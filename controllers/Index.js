@@ -6,8 +6,8 @@ define(['altair/facades/declare',
 
     return declare([Lifecycle, Emitter], {
 
-        hb: null,
-        auctionKey : 'handbid-demo-auction',
+        hb:         null,
+        auctionKey: 'handbid-demo-auction',
 
         /**
          * @param options
@@ -45,24 +45,28 @@ define(['altair/facades/declare',
                 request = e.get('request'),
                 theme = e.get('theme');
 
+            if(!request.get('back')) {
+                alert('no back');
+                return e.get('view').render('handbid:*/views/partials/');
+            }
             return this.all({
                 signupForm: this.createSignupForm(e),
                 loginForm:  this.createLoginForm(e)
             }).then(function (forms) {
 
-                return this.all({
-                    signupForm: forms.signupForm.render('handbid:*/views/partials/forms/signup.ejs'),
-                    loginForm:  forms.loginForm.render('handbid:*/views/partials/forms/login.ejs')
-                });
+                    return this.all({
+                        signupForm: forms.signupForm.render('handbid:*/views/partials/forms/signup.ejs'),
+                        loginForm:  forms.loginForm.render('handbid:*/views/partials/forms/login.ejs')
+                    });
 
-            }.bind(this)).then(function (forms) {
+                }.bind(this)).then(function (forms) {
                 return e.get('view').render(forms);
             });
 
 
         },
 
-        onDidReceiveRequest: function(e) {
+        onDidReceiveRequest: function (e) {
 
             var theme = e.get('theme');
 
@@ -79,22 +83,31 @@ define(['altair/facades/declare',
                 formValues: values,
                 formSchema: {
                     properties: {
-                        "firstName":   {
+                        "firstName": {
                             type:    "string",
                             options: {
                                 label: "First Name"
                             }
                         },
-                        "lastName":    {
+                        "lastName":  {
                             type:    "string",
                             options: {
                                 label: "Last Name"
                             }
                         },
-                        "email":       {
+                        "email":     {
                             type:    "string",
                             options: {
                                 label: "Email"
+                            }
+                        },
+                        "password":  {
+                            type:    "string",
+                            options: {
+                                label: "Password"
+                            },
+                            form:    {
+                                template: "handbid:*/views/partials/forms/properties/password.ejs"
                             }
                         },
                         "cellPhone": {
@@ -103,10 +116,10 @@ define(['altair/facades/declare',
                                 label: "Cell Phone"
                             }
                         },
-                        "phoneType":   {
+                        "phoneType": {
                             "type":    "select",
                             "options": {
-                                "label":   "Please contact me by:",
+                                "label":   "Type of phone:",
                                 "choices": {
                                     "iphone":  "iPhone",
                                     "android": "Android",
@@ -129,7 +142,7 @@ define(['altair/facades/declare',
                 formValues: values,
                 formSchema: {
                     properties: {
-                        "email":        {
+                        "email":    {
                             type:    "string",
                             options: {
                                 label: "Email"
@@ -139,6 +152,9 @@ define(['altair/facades/declare',
                             type:    "string",
                             options: {
                                 label: "Password"
+                            },
+                            form:    {
+                                template: "handbid:*/views/partials/forms/properties/password.ejs"
                             }
                         }
                     }
@@ -149,37 +165,59 @@ define(['altair/facades/declare',
 
         onDidSubmitSignupForm: function (e) {
 
-            var dfd  = new this.Deferred(),
+            var dfd = new this.Deferred(),
                 form = e.get('form'),
                 user = form.getValues(),
                 theme = e.get('theme');
 
-                this.hb.signup(user, function (user) {
-                    dfd.resolve();
-                }).otherwise(function(err) {
-                    theme.set('errors', err);
-                    dfd.resolve();
-                });
+            user.cellPhone = {
+                value: user.cellPhone,
+                type:  user.phoneType
+            };
+
+            this.hb.signup(user, function (error, user) {
+
+                this.onDidAuthenticate(error, e, user);
+
+                dfd.resolve();
+            }.bind(this));
 
             return dfd;
         },
 
-        onDidSubmitLoginForm:  function (e) {
-            var dfd  = new this.Deferred(),
+        onDidSubmitLoginForm: function (e) {
+            var dfd = new this.Deferred(),
                 form = e.get('form'),
                 user = form.getValues(),
                 theme = e.get('theme');
 
-            this.hb.login(user.email, user.password, function (user) {
-                alert('logged in!' + user);
+            this.hb.login(user.email, user.password, function (error, user) {
+
+                this.onDidAuthenticate(error, e, user);
+
                 dfd.resolve();
-            }).otherwise(function(err) {
-                theme.set('errors', err);
-                dfd.resolve();
-            });
+            }.bind(this));
 
             return dfd;
 
+        },
+
+        onDidAuthenticate: function (error, e, user) {
+
+            var theme = e.get('theme'),
+                response = e.get('response'),
+                request  = e.get('request');
+
+            if (error) {
+                theme.set('errors', [error]);
+            }
+            else if (!user) {
+                theme.set('errors', ['Login Failed']);
+            }
+            else {
+                var back = request.get('back');
+                theme.set('errors', ['Success']);
+            }
         }
     });
 
