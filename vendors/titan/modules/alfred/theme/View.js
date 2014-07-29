@@ -37,6 +37,16 @@ define(['altair/facades/declare',
             return (_.has(this._context, name)) ? this._context[name] : defaultValue;
         },
 
+        /**
+         * Override the path to this view script
+         *
+         * @param path
+         * @returns {this}
+         */
+        setPath: function (path) {
+            this._path = path;
+            return this;
+        },
 
         /**
          * Renders my view script

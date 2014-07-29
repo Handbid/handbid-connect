@@ -46,8 +46,7 @@ define(['altair/facades/declare',
                 theme = e.get('theme');
 
             if(!request.get('back')) {
-                alert('no back');
-                return e.get('view').render('handbid:*/views/partials/');
+                return e.get('view').setPath(this.resolvePath('views/index/no-back.ejs')).render();
             }
             return this.all({
                 signupForm: this.createSignupForm(e),
