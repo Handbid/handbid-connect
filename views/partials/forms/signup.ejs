@@ -1,0 +1,38 @@
+<div class="handbid-form signup-form">
+    <h2>Sign Up</h2>
+    <p>Sign Up to Handbid to bid!</p>
+
+
+    <form class="form" method="<%- form.method %>" action="<%- form.action %>" enctype="<%- form.enctype %>">
+
+        <% rows.forEach(function (properties) { %>
+
+        <% hidden = []; %>
+
+        <div class="row">
+
+            <% properties.forEach(function (property) { %>
+            <%- rendered[property.name] %>
+            <% }); %>
+
+        </div>
+
+        <% }); %>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-info">Submit</button>
+        </div>
+
+        <input type="hidden" name="altair-form-id" value="<%= form.id %>"/>
+
+        <% hiddenProperties.forEach(function (property) { %>
+
+        <%- rendered[property.name] %>
+
+        <% }); %>
+
+    </form>
+
+</div>
+
+

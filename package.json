@@ -1,0 +1,19 @@
+{
+    "name": "Signup",
+    "description": "This is a placeholder for a description about your app. To configure Altair, use altair.json",
+    "version": "0.0.1",
+    "dependencies": {
+        "consolidate": ">=0.10.x",
+        "ejs": ">=1.0.x",
+        "express": ">=3.x",
+        "less": ">=1.x",
+        "multiparty": "3.2.5",
+        "body-parser": ">=1.0.x",
+        "handbid": ">=0.0.x",
+        "escape-html": ">=1.0.x"
+    },
+    "altairDependencies": {
+        "titan:Alfred": ">=0.0.x",
+        "liquidfire:Forms": ">=0.0.x"
+    }
+}

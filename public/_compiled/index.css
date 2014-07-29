@@ -1,0 +1,47 @@
+body {
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
+  font-family: 'Oxygen', sans-serif;
+  background: #3f5673;
+}
+.container-fluid {
+  padding: 25px;
+}
+.handbid-form {
+  background-color: #f3f5f7;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+.handbid-form h2 {
+  text-align: center;
+  color: #3f5673;
+  padding: 35px 0 0;
+  margin: 0;
+}
+.handbid-form p {
+  color: #8793a5;
+  font-size: 13px;
+  padding: 20px 0 0;
+  text-align: center;
+  margin: 0;
+}
+.handbid-form label {
+  color: #8793a5;
+}
+.handbid-form form {
+  padding: 25px;
+}
+.handbid-form input {
+  background-color: #e7e9eb;
+  color: #808c9e;
+  border: none;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  height: 40px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 1px 1px rgba(255, 255, 255, 0.1);
+  padding: 0 15px 0;
+  font-size: 13px;
+}

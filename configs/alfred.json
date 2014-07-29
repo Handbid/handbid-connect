@@ -1,0 +1,34 @@
+{
+    "site": {
+        "strategy": "express3",
+        "options":  {
+            "port":   80,
+            "vendor": "handbid",
+            "domain": "signup.handbid.com",
+            "media":  {
+                "css": [
+                    "/public/css/animate.css",
+                    "/public/css/bootstrap.min.css",
+                    "/public/css/bootstrap-theme.min.css"
+                ],
+                "less": [
+                    "/public/less/index.less"
+                ],
+                "js":   [
+                    "/node_modules/handbid/handbid.js",
+                    "/public/js/bootstrap.min.js"
+                ]
+            },
+            "routes": {
+                "/":                {
+                    "action":        "controllers/Index::index",
+                    "layoutContext": {
+                        "title":     "signup",
+                        "bodyClass": "signup-page"
+                    }
+                }
+            }
+
+        }
+    }
+}

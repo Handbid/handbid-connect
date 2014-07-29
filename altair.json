@@ -1,0 +1,41 @@
+{
+
+    "tests.disabled": {
+        "glob": ["app/vendors/*/modules/*/tests/*.js"]
+    },
+    "default":        {
+
+        "cartridges": {
+            "database": {
+                "options": {
+                    "$ref": "./configs/database.json"
+                }
+            },
+
+            "module": {
+                "options": {
+                    "moduleOptions": {
+                        "$ref": "./configs/modules.json"
+                    }
+                }
+            }
+        }
+    },
+
+    "dev": {
+        "cartridges": {
+            "database": {
+                "options": {
+                    "$ref": "./configs/database-dev.json"
+                }
+            },
+            "module":   {
+                "options": {
+                    "moduleOptions": {
+                        "$ref": "./configs/modules-dev.json"
+                    }
+                }
+            }
+        }
+    }
+}
