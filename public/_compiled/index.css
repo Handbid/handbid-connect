@@ -60,3 +60,6 @@ body {
 .handbid-form button:hover {
   background: #1672b3;
 }
+.col-xs-12 {
+  margin-bottom: 25px;
+}
