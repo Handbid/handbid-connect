@@ -1,0 +1,15 @@
+<% if(errors) { %>
+<div class="container notices">
+    <% } %>
+
+    <% if(errors) { %>
+    <% errors.forEach(function (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+    <% }) %>
+    <% } %>
+
+    <% if(errors) { %>
+
+</div>
+
+<% } %>

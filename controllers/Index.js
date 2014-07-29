@@ -26,6 +26,10 @@ define(['altair/facades/declare',
                 'form.id': 'login'
             }).then(this.hitch('onDidSubmitLoginForm'));
 
+            this.on('titan:Alfred::did-receive-request', {
+                'controller': this
+            }).then(this.hitch('onDidReceiveRequest'));
+
             return this.inherited(arguments);
 
         },
@@ -55,6 +59,15 @@ define(['altair/facades/declare',
                 return e.get('view').render(forms);
             });
 
+
+        },
+
+        onDidReceiveRequest: function(e) {
+
+            var theme = e.get('theme');
+
+            //set links, errors, and messages to our theme
+            theme.set('errors', false);
 
         },
 
@@ -138,40 +151,35 @@ define(['altair/facades/declare',
 
             var dfd  = new this.Deferred(),
                 form = e.get('form'),
-                user = form.getValues();
-
-            this.hb.connectToAuction(this.auctionKey, null);
-
-            this.hb.on('did-connect-to-server', function (e) {
+                user = form.getValues(),
+                theme = e.get('theme');
 
                 this.hb.signup(user, function (user) {
-                    this.hb.setAuth(user.auth, function (user) {
-                        return dfd.resolve();
-                    })
+                    dfd.resolve();
                 }).otherwise(function(err) {
-                    dfd.reject(err);
+                    theme.set('errors', err);
+                    dfd.resolve();
                 });
 
-            });
+            return dfd;
         },
 
         onDidSubmitLoginForm:  function (e) {
             var dfd  = new this.Deferred(),
                 form = e.get('form'),
-                user = form.getValues();
+                user = form.getValues(),
+                theme = e.get('theme');
 
-            this.hb.connectToAuction(this.auctionKey, null);
-
-            this.hb.on('did-connect-to-auction', function (e) {
-
-                this.hb.login(user.email, user.password, function (user) {
-                    alert('logged in!' + user);
-                    return dfd.resolve();
-                }).otherwise(function(err) {
-                    dfd.reject(err);
-                });
-
+            this.hb.login(user.email, user.password, function (user) {
+                alert('logged in!' + user);
+                dfd.resolve();
+            }).otherwise(function(err) {
+                theme.set('errors', err);
+                dfd.resolve();
             });
+
+            return dfd;
+
         }
     });
 

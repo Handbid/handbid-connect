@@ -1,10 +1,32 @@
+// Handbid Setup
+
+// Primary
+@lightBlue: rgba(76, 176, 206, 1);
+@darkBlue:  rgba(22, 114, 179, 1);
+@gray:      rgba(110, 130, 138, 1);
+
+// highlight
+@orange: rgba(247, 142, 30, 1);
+@green:  rgba(159, 185, 74, 1);
+@pink:   rgba(23, 77, 112, 1);
+
 body {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     font-weight: 400;
     font-family: 'Oxygen', sans-serif;
-    background: #3f5673;
+    background: @darkBlue;
+}
+
+.logo {
+    background-image: url('../images/logo.svg');
+    width: 200px;
+    height: 100px;
+
+    margin: 25px auto 0 auto;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .container-fluid {
@@ -12,25 +34,24 @@ body {
 }
 
 .handbid-form {
-    background-color: #f3f5f7;
+    background-color: #fff;
     border-radius: 5px;
     -webkit-border-radius: 5px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1) inset, 0 1px 1px rgba(255,255,255,0.1);
     h2 {
         text-align: center;
-        color: #3f5673;
+        color: @darkBlue;
         padding: 35px 0 0;
         margin: 0;
     }
     p {
-        color: #8793a5;
+        color: @gray;
         font-size: 13px;
         padding: 20px 0 0;
         text-align: center;
         margin: 0;
     }
     label {
-        color: #8793a5;
+        color: @gray;
     }
     form {
         padding: 25px;
@@ -42,9 +63,17 @@ body {
         border-radius: 5px;
         -webkit-border-radius: 5px;
         height: 40px;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.1) inset, 0 1px 1px rgba(255,255,255,0.1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 1px 1px rgba(255, 255, 255, 0.1);
         padding: 0 15px 0;
         font-size: 13px;
+    }
+    .form-control:focus {
+        box-shadow: none;
+        -moz-box-shadow: none;
+    }
+    button,
+    button:hover {
+        background: @darkBlue;
     }
 }
 
