@@ -4,9 +4,9 @@
         "options":  {
             "port":   80,
             "vendor": "handbid",
-            "domain": "signup.handbid.com",
+            "domain": "connect.handbid.com",
             "media":  {
-                "css": [
+                "css":  [
                     "/public/css/animate.css",
                     "/public/css/bootstrap.min.css",
                     "/public/css/bootstrap-theme.min.css"
@@ -16,19 +16,33 @@
                 ],
                 "js":   [
                     "/node_modules/handbid/handbid.js",
+                    "/public/js/jquery-1.11.1.min.js",
                     "/public/js/bootstrap.min.js"
                 ]
             },
             "routes": {
-                "/":                {
+                "/":                       {
                     "action":        "controllers/Index::index",
                     "layoutContext": {
-                        "title":     "signup",
-                        "bodyClass": "signup-page"
+                        "title":     "Connect",
+                        "bodyClass": "connect-page"
+                    }
+                },
+                "/auth/facebook":          {
+                    "action":        "controllers/Facebook::index",
+                    "layoutContext": {
+                        "title":     "Facebook OAuth",
+                        "bodyClass": "facebook-auth"
+                    }
+                },
+                "/auth/facebook/callback": {
+                    "action":        "controllers/Facebook::callback",
+                    "layoutContext": {
+                        "title":     "Facebook OAuth Callback",
+                        "bodyClass": "facebook-auth-callback"
                     }
                 }
             }
-
         }
     }
 }

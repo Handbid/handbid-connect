@@ -11,8 +11,9 @@ define(['altair/facades/declare',
     '../http/Request',
     '../http/Response',
     'lodash',
-    './_Base'
-], function (declare, hitch, mixin, express, http, bodyParser, multiparty, when, Theme, View, Request, Response, _, _Base) {
+    './_Base',
+    'altair/plugins/node!passport'
+], function (declare, hitch, mixin, express, http, bodyParser, multiparty, when, Theme, View, Request, Response, _, _Base, passport) {
 
     return declare([_Base], {
 
@@ -61,8 +62,10 @@ define(['altair/facades/declare',
 
             var module = this.parent;
 
+
             this._app.use(bodyParser.json());       // to support JSON-encoded bodies
             this._app.use(bodyParser.urlencoded({extended: true}));
+
 
             //in case someone wants to reconfigure the app (minus routes of course since those are set during startup)
             this.appConfig = app;
@@ -89,7 +92,6 @@ define(['altair/facades/declare',
 
 
             }, this);
-
 
             return this;
 

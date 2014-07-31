@@ -1,5 +1,11 @@
-<% if(errors) { %>
+<% if(messages || errors) { %>
 <div class="container notices">
+    <% } %>
+
+    <% if(messages) { %>
+    <% messages.forEach(function (message) { %>
+    <div class="alert alert-success"><%= message %></div>
+    <% }) %>
     <% } %>
 
     <% if(errors) { %>
@@ -8,7 +14,7 @@
     <% }) %>
     <% } %>
 
-    <% if(errors) { %>
+    <% if(messages || errors) { %>
 
 </div>
 

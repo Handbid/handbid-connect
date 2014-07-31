@@ -1,8 +1,9 @@
 define(['altair/facades/declare',
     'altair/Lifecycle',
     'altair/events/Emitter',
-    'altair/plugins/node!handbid'
-], function (declare, Lifecycle, Emitter, handbid) {
+    'altair/plugins/node!handbid',
+    'altair/plugins/node!passport-facebook'
+], function (declare, Lifecycle, Emitter, handbid, passport) {
 
     return declare([Lifecycle, Emitter], {
 
@@ -69,8 +70,8 @@ define(['altair/facades/declare',
 
             var theme = e.get('theme');
 
-            //set links, errors, and messages to our theme
             theme.set('errors', false);
+            theme.set('messages', false);
 
         },
 
@@ -215,7 +216,7 @@ define(['altair/facades/declare',
             }
             else {
                 var back = request.get('back');
-                theme.set('errors', ['Success']);
+                theme.set('messages', ['Success']);
             }
         }
     });

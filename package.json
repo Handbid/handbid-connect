@@ -10,7 +10,9 @@
         "multiparty": "3.2.5",
         "body-parser": ">=1.0.x",
         "handbid": ">=0.0.x",
-        "escape-html": ">=1.0.x"
+        "escape-html": ">=1.0.x",
+        "passport": ">=0.2.x",
+        "passport-facebook": ">=1.0.x"
     },
     "altairDependencies": {
         "titan:Alfred": ">=0.0.x",
