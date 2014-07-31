@@ -21,7 +21,7 @@ define(['altair/facades/declare',
          */
         startup: function (options) {
 
-            this.hb = new handbid();
+            this.hb = new handbid({url: 'taysmacbookpro.local:6789'});
             this.hb.connect();
 
             this.on('liquidfire:Forms::did-submit-form', {
@@ -280,8 +280,15 @@ define(['altair/facades/declare',
             var cookie = new Cookies(request, response),
                 url = cookie.get("back");
 
-
-            console.log(user);
+            if((url.indexOf("?") > -1)) {
+                url += "&handbid-auth=" + user.auth;
+            }
+            else
+            {
+                url += "?handbid-auth=" + user.auth;
+            }
+//            user.auth
+            console.log(url);
         }
     });
 
