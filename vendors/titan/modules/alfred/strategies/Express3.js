@@ -11,9 +11,8 @@ define(['altair/facades/declare',
     '../http/Request',
     '../http/Response',
     'lodash',
-    './_Base',
-    'altair/plugins/node!passport'
-], function (declare, hitch, mixin, express, http, bodyParser, multiparty, when, Theme, View, Request, Response, _, _Base, passport) {
+    './_Base'
+], function (declare, hitch, mixin, express, http, bodyParser, multiparty, when, Theme, View, Request, Response, _, _Base) {
 
     return declare([_Base], {
 
@@ -52,6 +51,15 @@ define(['altair/facades/declare',
 
         },
 
+
+        /**
+         * Instance of express.
+         * @returns {alfred.strategies._Base._app|*}
+         */
+        app: function () {
+            return this._app;
+        },
+
         /**
          * Configures express using the site's app.json
          *
@@ -60,16 +68,24 @@ define(['altair/facades/declare',
          */
         configureApp: function (app) {
 
-            var module = this.parent;
+            //in case someone wants to reconfigure the app (minus routes of course since those are set during startup)
+            this.appConfig = app;
 
+            this.parent.emit('will-configure-express-middle', {
+                strategy:   this,
+                express:    this._app
+            });
 
             this._app.use(bodyParser.json());       // to support JSON-encoded bodies
             this._app.use(bodyParser.urlencoded({extended: true}));
 
+            this.parent.emit('will-configure-express-routes', {
+                strategy:   this,
+                express:    this._app
+            });
 
-            //in case someone wants to reconfigure the app (minus routes of course since those are set during startup)
-            this.appConfig = app;
 
+            //serve this dir statically
             this.serveStatically(app.path + 'public', '/public');
 
             //loop through each route
@@ -92,6 +108,7 @@ define(['altair/facades/declare',
 
 
             }, this);
+
 
             return this;
 

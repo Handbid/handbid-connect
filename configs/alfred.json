@@ -27,20 +27,6 @@
                         "title":     "Connect",
                         "bodyClass": "connect-page"
                     }
-                },
-                "/auth/facebook":          {
-                    "action":        "controllers/Facebook::index",
-                    "layoutContext": {
-                        "title":     "Facebook OAuth",
-                        "bodyClass": "facebook-auth"
-                    }
-                },
-                "/auth/facebook/callback": {
-                    "action":        "controllers/Facebook::callback",
-                    "layoutContext": {
-                        "title":     "Facebook OAuth Callback",
-                        "bodyClass": "facebook-auth-callback"
-                    }
                 }
             }
         }

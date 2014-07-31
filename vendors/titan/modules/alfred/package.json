@@ -1,6 +1,6 @@
 {
     "name":               "titan:Alfred",
-    "version":            "0.0.18",
+    "version":            "0.0.19",
     "altairDependencies": {
         "altair:CommandCentral": ">=0.0.x",
         "liquidfire:Onyx":       ">=0.1.x"

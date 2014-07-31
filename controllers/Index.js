@@ -2,13 +2,18 @@ define(['altair/facades/declare',
     'altair/Lifecycle',
     'altair/events/Emitter',
     'altair/plugins/node!handbid',
-    'altair/plugins/node!passport-facebook'
-], function (declare, Lifecycle, Emitter, handbid, passport) {
+    'altair/plugins/node!passport',
+    'altair/plugins/node!passport-facebook',
+    'altair/plugins/node!express-session',
+    'altair/plugins/node!cookies'
+], function (declare, Lifecycle, Emitter, handbid, passport, facebook, expressSession, Cookies) {
 
     return declare([Lifecycle, Emitter], {
 
         hb:         null,
         auctionKey: 'handbid-demo-auction',
+        appId:     '289898497844744',
+        appSecret: 'f8e41e8d38c30acf3ea059fe41dbcb20',
 
         /**
          * @param options
@@ -31,6 +36,30 @@ define(['altair/facades/declare',
                 'controller': this
             }).then(this.hitch('onDidReceiveRequest'));
 
+            this.on('titan:Alfred::will-configure-express-routes').then(this.hitch('onWillConfigureExpressRoutes'));
+
+            passport.serializeUser(function(user, done) {
+                done(null, user);
+            });
+
+            passport.deserializeUser(function(obj, done) {
+                done(null, obj);
+            });
+
+            passport.use(new facebook.Strategy({
+                clientID: this.appId,
+                clientSecret: this.appSecret,
+                callbackURL: 'http://localhost:8082/auth/facebook/callback'
+            }, function(accessToken, refreshToken, profile, done) {
+
+                this.hb.signup({
+                    facebookId: profile.id
+                }, function(err, user) {
+                    done(null, user);
+                });
+
+            }.bind(this)));
+
             return this.inherited(arguments);
 
         },
@@ -44,11 +73,16 @@ define(['altair/facades/declare',
             //an event has lots of useful data pertaining to a particular request.
             var response = e.get('response'),
                 request = e.get('request'),
-                theme = e.get('theme');
+                theme = e.get('theme'),
+                cookie;
 
             if(!request.get('back')) {
                 return e.get('view').setPath(this.resolvePath('views/index/no-back.ejs')).render();
             }
+
+            cookie = new Cookies( request.raw(), response.raw() );
+            cookie.set("back", request.get('back'));
+
             return this.all({
                 signupForm: this.createSignupForm(e),
                 loginForm:  this.createLoginForm(e)
@@ -216,8 +250,38 @@ define(['altair/facades/declare',
             }
             else {
                 var back = request.get('back');
+                this.redirectToSource(request.raw(), response.raw(), user);
                 theme.set('messages', ['Success']);
             }
+        },
+        onWillConfigureExpressRoutes : function(e) {
+            var app = e.get('express');
+
+            app.use(expressSession({ secret: 'handbid connect' }));
+            app.use(passport.initialize());
+            app.use(passport.session());
+
+            app.get('/auth/facebook',
+                passport.authenticate('facebook'),
+                function(req, res){
+                    // The request will be redirected to Facebook for authentication, so this
+                    // function will not be called.
+                });
+
+            app.get('/auth/facebook/callback',
+                passport.authenticate('facebook', {
+                    failureRedirect: '/' }),
+                function(req, res) {
+                    this.redirectToSource(req, res, req.user);
+                }.bind(this));
+        },
+        redirectToSource: function(request, response, user) {
+
+            var cookie = new Cookies(request, response),
+                url = cookie.get("back");
+
+
+            console.log(user);
         }
     });
 

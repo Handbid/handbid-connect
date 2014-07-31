@@ -17,9 +17,7 @@ define(['altair/facades/declare',
         './nexusresolvers/Controllers',
         'require',
         './extensions/Model',
-        'altair/mixins/_AssertMixin',
-        'altair/plugins/node!passport'
-
+        'altair/mixins/_AssertMixin'
 ], function (declare,
              _,
              _HasSchemaMixin,
@@ -28,8 +26,7 @@ define(['altair/facades/declare',
              ControllersResolver,
              require,
              ModelExtension,
-             _AssertMixin,
-             passport) {
+             _AssertMixin) {
 
     return declare([_HasSchemaMixin, _HasCommandersMixin, _HasServerStrategiesMixin, _AssertMixin], {
 

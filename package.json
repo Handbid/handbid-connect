@@ -12,7 +12,9 @@
         "handbid": ">=0.0.x",
         "escape-html": ">=1.0.x",
         "passport": ">=0.2.x",
-        "passport-facebook": ">=1.0.x"
+        "passport-facebook": ">=1.0.x",
+        "express-session": ">=1.7.x",
+        "cookies": ">=0.5.x"
     },
     "altairDependencies": {
         "titan:Alfred": ">=0.0.x",
