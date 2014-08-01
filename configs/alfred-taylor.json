@@ -1,0 +1,10 @@
+{
+    "site": {
+        "options": {
+            "port": 8080,
+            "domain": "localhost:8080",
+            "secure": true,
+            "firebird": "//localhost:6789"
+        }
+    }
+}

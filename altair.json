@@ -37,5 +37,20 @@
                 }
             }
         }
+    },
+
+    "taylor": {
+        "paths":      {
+            "dev": "/Users/taylorromero/Development/altair-dev"
+        },
+        "cartridges": {
+            "module": {
+                "options": {
+                    "moduleOptions": {
+                        "$ref": "./configs/modules-taylor.json"
+                    }
+                }
+            }
+        }
     }
 }

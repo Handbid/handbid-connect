@@ -2,10 +2,12 @@
     "site": {
         "strategy": "express3",
         "options":  {
-            "port":   80,
-            "vendor": "handbid",
-            "domain": "connect.handbid.com",
-            "media":  {
+            "port":     80,
+            "vendor":   "handbid",
+            "domain":   "connect.handbid.com",
+            "firebird": "//firebird.handbid.com:6789",
+            "secure":   true,
+            "media":    {
                 "css":  [
                     "/public/css/animate.css",
                     "/public/css/bootstrap.min.css",
@@ -20,13 +22,17 @@
                     "/public/js/bootstrap.min.js"
                 ]
             },
-            "routes": {
-                "/":                       {
+            "routes":   {
+                "/": {
                     "action":        "controllers/Index::index",
                     "layoutContext": {
                         "title":     "Connect",
                         "bodyClass": "connect-page"
                     }
+                },
+
+                "/fail": {
+                    "action":        "controllers/Index::fail"
                 }
             }
         }

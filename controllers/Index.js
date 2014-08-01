@@ -21,7 +21,8 @@ define(['altair/facades/declare',
          */
         startup: function (options) {
 
-            this.hb = new handbid({url: 'taysmacbookpro.local:6789'});
+            //setu handbid connect
+            this.hb = new handbid({ url: options.app.firebird });
             this.hb.connect();
 
             this.on('liquidfire:Forms::did-submit-form', {
@@ -38,18 +39,23 @@ define(['altair/facades/declare',
 
             this.on('titan:Alfred::will-configure-express-routes').then(this.hitch('onWillConfigureExpressRoutes'));
 
-            passport.serializeUser(function(user, done) {
-                done(null, user);
-            });
 
-            passport.deserializeUser(function(obj, done) {
-                done(null, obj);
-            });
+//            passport.serializeUser(function(user, done) {
+//                done(null, user);
+//            });
+//
+//            passport.deserializeUser(function(obj, done) {
+//                done(null, obj);
+//            });
+
+            //where to redirect user after they remotely auth
+            var redirect    = options.app.secure ? 'https://' : 'http://';
+            redirect        = redirect + options.app.domain + '/auth/facebook/callback';
 
             passport.use(new facebook.Strategy({
-                clientID: this.appId,
-                clientSecret: this.appSecret,
-                callbackURL: 'http://localhost:8082/auth/facebook/callback'
+                clientID:       this.appId,
+                clientSecret:   this.appSecret,
+                callbackURL:     redirect
             }, function(accessToken, refreshToken, profile, done) {
 
                 this.hb.signup({
@@ -71,30 +77,33 @@ define(['altair/facades/declare',
         index: function (e) {
 
             //an event has lots of useful data pertaining to a particular request.
-            var response = e.get('response'),
-                request = e.get('request'),
-                theme = e.get('theme'),
+            var response    = e.get('response'),
+                request     = e.get('request'),
+                theme       = e.get('theme'),
                 cookie;
 
-            if(!request.get('back')) {
+            if(!request.get('pass') || !request.get('fail')) {
                 return e.get('view').setPath(this.resolvePath('views/index/no-back.ejs')).render();
             }
 
             cookie = new Cookies( request.raw(), response.raw() );
-            cookie.set("back", request.get('back'));
+            cookie.set("pass", request.get('pass'));
+            cookie.set("fail", request.get('fail'));
 
             return this.all({
                 signupForm: this.createSignupForm(e),
                 loginForm:  this.createLoginForm(e)
             }).then(function (forms) {
 
-                    return this.all({
-                        signupForm: forms.signupForm.render('handbid:*/views/partials/forms/signup.ejs'),
-                        loginForm:  forms.loginForm.render('handbid:*/views/partials/forms/login.ejs')
-                    });
+                return this.all({
+                    signupForm: forms.signupForm.render('handbid:*/views/partials/forms/signup.ejs'),
+                    loginForm:  forms.loginForm.render('handbid:*/views/partials/forms/login.ejs')
+                });
 
-                }.bind(this)).then(function (forms) {
+            }.bind(this)).then(function (forms) {
+
                 return e.get('view').render(forms);
+
             });
 
 
@@ -212,14 +221,15 @@ define(['altair/facades/declare',
             this.hb.signup(user, function (error, user) {
 
                 this.onDidAuthenticate(error, e, user);
-
                 dfd.resolve();
+
             }.bind(this));
 
             return dfd;
         },
 
         onDidSubmitLoginForm: function (e) {
+
             var dfd = new this.Deferred(),
                 form = e.get('form'),
                 user = form.getValues(),
@@ -228,8 +238,8 @@ define(['altair/facades/declare',
             this.hb.login(user.email, user.password, function (error, user) {
 
                 this.onDidAuthenticate(error, e, user);
-
                 dfd.resolve();
+
             }.bind(this));
 
             return dfd;
@@ -250,14 +260,18 @@ define(['altair/facades/declare',
             }
             else {
                 var back = request.get('back');
+                e.preventDefault();
                 this.redirectToSource(request.raw(), response.raw(), user);
-                theme.set('messages', ['Success']);
+
             }
+
         },
+
         onWillConfigureExpressRoutes : function(e) {
+
             var app = e.get('express');
 
-            app.use(expressSession({ secret: 'handbid connect' }));
+            app.use(expressSession({ secret: 'handbid connect', resave: false, saveUninitialized: false }));
             app.use(passport.initialize());
             app.use(passport.session());
 
@@ -269,16 +283,17 @@ define(['altair/facades/declare',
                 });
 
             app.get('/auth/facebook/callback',
-                passport.authenticate('facebook', {
-                    failureRedirect: '/' }),
+                passport.authenticate('facebook', { failureRedirect: '/fail' }),
                 function(req, res) {
                     this.redirectToSource(req, res, req.user);
                 }.bind(this));
+
         },
+
         redirectToSource: function(request, response, user) {
 
-            var cookie = new Cookies(request, response),
-                url = cookie.get("back");
+            var cookie  = new Cookies(request, response),
+                url     = cookie.get("pass");
 
             if((url.indexOf("?") > -1)) {
                 url += "&handbid-auth=" + user.auth;
@@ -287,8 +302,21 @@ define(['altair/facades/declare',
             {
                 url += "?handbid-auth=" + user.auth;
             }
-//            user.auth
-            console.log(url);
+
+            response.redirect(url);
+
+        },
+
+        /**
+         * Redirect user to "fail" url
+         *
+         * @param e
+         */
+        fail: function (e) {
+
+            var cookie = new Cookies(e.get('request').raw(), e.get('response').raw());
+            e.get('response').redirect(cookie.get('fail'));
+
         }
     });
 
