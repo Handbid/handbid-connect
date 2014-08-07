@@ -77,8 +77,8 @@ define(['altair/facades/declare',
 
                 }.bind(this));
 
-                this.hb.on('connect', function (e) {
-                    this.log('connect to firebird');
+                this.hb.on('did-connect-to-server', function (e) {
+                    this.log('connected to firebird');
                 }.bind(this));
             }
 
