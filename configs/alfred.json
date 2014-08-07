@@ -17,7 +17,6 @@
                     "/public/less/index.less"
                 ],
                 "js":   [
-                    "/node_modules/handbid/handbid.js",
                     "/public/js/jquery-1.11.1.min.js",
                     "/public/js/bootstrap.min.js"
                 ]
