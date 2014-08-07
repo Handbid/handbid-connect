@@ -82,6 +82,7 @@ define(['altair/facades/declare',
                 }.bind(this));
             }
 
+
             this.hb.connect({ url: options.app.firebird, 'force new connection': true });
         },
 
