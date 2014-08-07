@@ -1,0 +1,70 @@
+{
+    "alfred": {
+
+        "path":        "commanders/Commander",
+        "description": "Your personal web server",
+        "label":       "Alfred",
+        "commands":    {
+
+            "start":        {
+                "label":       "Start a web server",
+                "description": "",
+                "aliases":     ["go"],
+                "schema":      {
+                    "strategy": {
+                        "type":    "select",
+                        "options": {
+                            "label": "Web server"
+                        }
+                    }
+                }
+            },
+            "startRecycle": {
+                "label":       "Start a web server and have it restart ever 10 seconds (test only)",
+                "description": "",
+                "schema":      {
+                    "strategy": {
+                        "type":    "select",
+                        "options": {
+                            "label": "Web server"
+                        }
+                    }
+                }
+            },
+            "site":         {
+                "label":       "forge new site",
+                "description": "Get started creating your website right away!",
+                "aliases":     ["forge"],
+                "schema":      {
+                    "destination": {
+                        "type":    "path",
+                        "options": {
+                            "label":       "destination",
+                            "required":    true,
+                            "default":     ".",
+                            "description": "Where would you like your new site forged?"
+                        }
+                    },
+                    "vendor":      {
+                        "type":    "string",
+                        "options": {
+                            "pattern":     "[a-z]",
+                            "label":       "vendor name",
+                            "description": "A vendor is usually the name of your company or organization."
+
+                        }
+                    },
+                    "domain":      {
+                        "type":    "string",
+                        "options": {
+                            "label":       "domain name",
+                            "description": "For when you write out absolute URL's (for emails and such), e.g. google.com"
+
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

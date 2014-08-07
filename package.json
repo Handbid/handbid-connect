@@ -14,7 +14,14 @@
         "passport": ">=0.2.x",
         "passport-facebook": ">=1.0.x",
         "express-session": ">=1.7.x",
-        "cookies": ">=0.5.x"
+        "cookies": ">=0.5.x",
+        "chai": "*",
+        "moment": ">=2.6.x",
+        "tmp": "0.0.23",
+        "gm": ">=1.16.x",
+        "sockjs": ">=0.3.8",
+        "socket.io": "0.9.17",
+        "socket.io-client": "0.9.17"
     },
     "altairDependencies": {
         "titan:Alfred": ">=0.0.x",

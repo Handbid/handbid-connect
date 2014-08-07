@@ -1,0 +1,5 @@
+{
+    "name":         "Form",
+    "version":      "0.0.1",
+    "description":  "Render a schema as a form."
+}

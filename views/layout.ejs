@@ -24,5 +24,10 @@
     <%- body %>
 
 <%- js %>
+
+<% if (!connectedToFireBird) { %>
+<div class="firebird-error"></div>
+<% } %>
+
 </body>
 </html>

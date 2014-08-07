@@ -40,7 +40,7 @@
     },
 
     "taylor": {
-        "paths":      {
+        "paths.skip":      {
             "dev": "/Users/taylorromero/Development/altair-dev"
         },
         "cartridges": {
@@ -48,6 +48,18 @@
                 "options": {
                     "moduleOptions": {
                         "$ref": "./configs/modules-taylor.json"
+                    }
+                }
+            }
+        }
+    },
+
+    "beta": {
+        "cartridges": {
+            "module": {
+                "options": {
+                    "moduleOptions": {
+                        "$ref": "./configs/modules-beta.json"
                     }
                 }
             }

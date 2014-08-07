@@ -21,9 +21,7 @@ define(['altair/facades/declare',
          */
         startup: function (options) {
 
-            //setu handbid connect
-            this.hb = new handbid({ url: options.app.firebird });
-            this.hb.connect();
+            this.connectToHandbid(options);
 
             this.on('liquidfire:Forms::did-submit-form', {
                 'form.id': 'signup'
@@ -38,15 +36,6 @@ define(['altair/facades/declare',
             }).then(this.hitch('onDidReceiveRequest'));
 
             this.on('titan:Alfred::will-configure-express-routes').then(this.hitch('onWillConfigureExpressRoutes'));
-
-
-//            passport.serializeUser(function(user, done) {
-//                done(null, user);
-//            });
-//
-//            passport.deserializeUser(function(obj, done) {
-//                done(null, obj);
-//            });
 
             //where to redirect user after they remotely auth
             var redirect    = options.app.secure ? 'https://' : 'http://';
@@ -67,6 +56,56 @@ define(['altair/facades/declare',
             }.bind(this)));
 
             return this.inherited(arguments);
+
+        },
+
+        connectToHandbid: function (options) {
+
+            //setup handbid connect
+            if(!this.hb) {
+
+                this.hb = new handbid();
+                this.hb.on('error', function (e) {
+
+                    this.log('handbid.js error');
+                    this.log(e.get('error'));
+
+                    if(!this.hb.isConnected()) {
+                        this.log('trying to connect again in 5 seconds');
+                        setTimeout(this.hitch('connectToHandbid', options), 5000);
+                    }
+
+                }.bind(this));
+
+                this.hb.on('connect', function (e) {
+                    this.log('connect to firebird');
+                }.bind(this));
+            }
+
+            this.hb.connect({ url: options.app.firebird, 'force new connection': true });
+        },
+
+
+        onWillConfigureExpressRoutes : function(e) {
+
+            var app = e.get('express');
+
+            app.use(expressSession({ secret: 'handbid-connect', resave: false, saveUninitialized: false }));
+            app.use(passport.initialize());
+            app.use(passport.session());
+
+            app.get('/auth/facebook',
+                passport.authenticate('facebook'),
+                function(req, res){
+                    // The request will be redirected to Facebook for authentication, so this
+                    // function will not be called.
+                });
+
+            app.get('/auth/facebook/callback',
+                passport.authenticate('facebook', { failureRedirect: '/fail' }),
+                function(req, res) {
+                    this.redirectToSource(req, res, req.user);
+                }.bind(this));
 
         },
 
@@ -115,6 +154,11 @@ define(['altair/facades/declare',
 
             theme.set('errors', false);
             theme.set('messages', false);
+            theme.set('connectedToFireBird', this.hb.isConnected());
+
+            if(!this.hb.isConnected()) {
+                theme.set('bodyClass', theme.get('bodyClass') + ' site-down');
+            }
 
         },
 
@@ -248,9 +292,9 @@ define(['altair/facades/declare',
 
         onDidAuthenticate: function (error, e, user) {
 
-            var theme = e.get('theme'),
-                response = e.get('response'),
-                request  = e.get('request');
+            var theme       = e.get('theme'),
+                response    = e.get('response'),
+                request     = e.get('request');
 
             if (error) {
                 theme.set('errors', [error]);
@@ -267,28 +311,6 @@ define(['altair/facades/declare',
 
         },
 
-        onWillConfigureExpressRoutes : function(e) {
-
-            var app = e.get('express');
-
-            app.use(expressSession({ secret: 'handbid connect', resave: false, saveUninitialized: false }));
-            app.use(passport.initialize());
-            app.use(passport.session());
-
-            app.get('/auth/facebook',
-                passport.authenticate('facebook'),
-                function(req, res){
-                    // The request will be redirected to Facebook for authentication, so this
-                    // function will not be called.
-                });
-
-            app.get('/auth/facebook/callback',
-                passport.authenticate('facebook', { failureRedirect: '/fail' }),
-                function(req, res) {
-                    this.redirectToSource(req, res, req.user);
-                }.bind(this));
-
-        },
 
         redirectToSource: function(request, response, user) {
 
