@@ -71,21 +71,25 @@ body {
     }
 
 
-    input:focus::-webkit-input-placeholder {
+    input:focus::-webkit-input-placeholder,
+    input:hover::-webkit-input-placeholder {
         color: @placeHolderFocus;
 
     }
 
-    input:focus:-moz-placeholder { /* Firefox 18- */
-        color: placeHolderFocus;
+    input:focus:-moz-placeholder, /* Firefox 18- */
+    input:hover:-moz-placeholder { /* Firefox 18- */
+        color: @placeHolderFocus;
     }
 
-    input:focus::-moz-placeholder {  /* Firefox 19+ */
-        color: placeHolderFocus;
+    input:focus::-moz-placeholder,  /* Firefox 19+ */
+    input:hover::-moz-placeholder {  /* Firefox 19+ */
+        color: @placeHolderFocus;
     }
 
-    input:focus:-ms-input-placeholder {
-        color: placeHolderFocus;
+    input:focus:-ms-input-placeholder,
+    input:hover:-ms-input-placeholder {
+        color: @placeHolderFocus;
     }
 
 

@@ -48,19 +48,23 @@ body {
 .handbid-form :-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
-.handbid-form input:focus::-webkit-input-placeholder {
+.handbid-form input:focus::-webkit-input-placeholder,
+.handbid-form input:hover::-webkit-input-placeholder {
   color: #ffffff;
 }
-.handbid-form input:focus:-moz-placeholder {
+.handbid-form input:focus:-moz-placeholder,
+.handbid-form input:hover:-moz-placeholder {
   /* Firefox 18- */
-  color: placeHolderFocus;
+  color: #ffffff;
 }
-.handbid-form input:focus::-moz-placeholder {
+.handbid-form input:focus::-moz-placeholder,
+.handbid-form input:hover::-moz-placeholder {
   /* Firefox 19+ */
-  color: placeHolderFocus;
+  color: #ffffff;
 }
-.handbid-form input:focus:-ms-input-placeholder {
-  color: placeHolderFocus;
+.handbid-form input:focus:-ms-input-placeholder,
+.handbid-form input:hover:-ms-input-placeholder {
+  color: #ffffff;
 }
 .handbid-form h2 {
   text-align: center;
