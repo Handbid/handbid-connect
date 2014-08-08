@@ -1,7 +1,7 @@
 {
     "site": {
         "options": {
-            "port": 8080,
+            "port": 8082,
             "firebird": "//beta.firebird.handbid.com:6789"
         }
     }

@@ -2,7 +2,7 @@
     "site": {
         "strategy": "express3",
         "options":  {
-            "port":     80,
+            "port":     8082,
             "vendor":   "handbid",
             "domain":   "connect.handbid.com",
             "firebird": "//firebird.handbid.com:6789",
