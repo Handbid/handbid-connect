@@ -35,18 +35,32 @@ body {
   -webkit-border-radius: 5px;
 }
 .handbid-form ::-webkit-input-placeholder {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.5);
 }
 .handbid-form :-moz-placeholder {
   /* Firefox 18- */
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.5);
 }
 .handbid-form ::-moz-placeholder {
   /* Firefox 19+ */
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.5);
 }
 .handbid-form :-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.handbid-form input:focus::-webkit-input-placeholder {
   color: #ffffff;
+}
+.handbid-form input:focus:-moz-placeholder {
+  /* Firefox 18- */
+  color: placeHolderFocus;
+}
+.handbid-form input:focus::-moz-placeholder {
+  /* Firefox 19+ */
+  color: placeHolderFocus;
+}
+.handbid-form input:focus:-ms-input-placeholder {
+  color: placeHolderFocus;
 }
 .handbid-form h2 {
   text-align: center;
@@ -70,14 +84,13 @@ body {
   background-color: transparent;
   color: #fff;
   border: none;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   -webkit-border-radius: 0px;
   border-radius: 0px;
   height: 40px;
   box-shadow: none;
   padding: 0 15px 0;
   font-size: 14px;
-  opacity: 0.5;
 }
 .handbid-form input:hover,
 .handbid-form input:focus {

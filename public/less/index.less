@@ -50,7 +50,8 @@ body {
     border-radius: 5px;
     -webkit-border-radius: 5px;
 
-    @placeHolder: #fff;
+    @placeHolder: rgba(255,255,255,0.5);
+    @placeHolderFocus: rgba(255,255,255,1);
 
     ::-webkit-input-placeholder {
         color: @placeHolder;
@@ -67,6 +68,24 @@ body {
 
     :-ms-input-placeholder {
         color: @placeHolder;
+    }
+
+
+    input:focus::-webkit-input-placeholder {
+        color: @placeHolderFocus;
+
+    }
+
+    input:focus:-moz-placeholder { /* Firefox 18- */
+        color: placeHolderFocus;
+    }
+
+    input:focus::-moz-placeholder {  /* Firefox 19+ */
+        color: placeHolderFocus;
+    }
+
+    input:focus:-ms-input-placeholder {
+        color: placeHolderFocus;
     }
 
 
@@ -92,14 +111,13 @@ body {
         background-color: transparent;
         color: #fff;
         border: none;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid rgba(255,255,255,0.5);
         -webkit-border-radius: 0px;
         border-radius: 0px;
         height: 40px;
         box-shadow: none;
         padding: 0 15px 0;
         font-size: 14px;
-        opacity: 0.5;
     }
 
     input:hover, input:focus {
