@@ -173,41 +173,45 @@ define(['altair/facades/declare',
                     properties: {
                         "firstName": {
                             type:    "string",
-                            options: {
-                                label: "First Name"
-                            }
+                            attribs: {
+                                placeholder: "First Name"
+                            },
+                            options: {}
                         },
                         "lastName":  {
                             type:    "string",
-                            options: {
-                                label: "Last Name"
-                            }
+                            attribs: {
+                                placeholder: "Last Name"
+                            },
+                            options: {}
                         },
                         "email":     {
                             type:    "string",
-                            options: {
-                                label: "Email"
-                            }
+                            attribs: {
+                                placeholder: "Email"
+                            },
+                            options: {}
                         },
                         "password":  {
                             type:    "string",
-                            options: {
-                                label: "Password"
+                            attribs: {
+                                placeholder: "Password"
                             },
                             form:    {
                                 template: "handbid:*/views/partials/forms/properties/password.ejs"
-                            }
+                            },
+                            options: {}
                         },
                         "cellPhone": {
                             type:    "string",
-                            options: {
-                                label: "Cell Phone"
-                            }
+                            attribs: {
+                                placeholder: "Cell Phone"
+                            },
+                            options: {}
                         },
                         "phoneType": {
                             "type":    "select",
                             "options": {
-                                "label":   "Type of phone:",
                                 "choices": {
                                     "iphone":  "iPhone",
                                     "android": "Android",
@@ -232,18 +236,21 @@ define(['altair/facades/declare',
                     properties: {
                         "email":    {
                             type:    "string",
+                            attribs: {
+                                placeholder: 'Email'
+                            },
                             options: {
-                                label: "Email"
                             }
                         },
                         "password": {
                             type:    "string",
-                            options: {
-                                label: "Password"
+                            attribs: {
+                                placeholder: "Password"
                             },
                             form:    {
                                 template: "handbid:*/views/partials/forms/properties/password.ejs"
-                            }
+                            },
+                            options: {}
                         }
                     }
                 },
