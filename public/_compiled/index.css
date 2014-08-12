@@ -96,6 +96,9 @@ body {
   padding: 0 15px 0;
   font-size: 14px;
 }
+.handbid-form select {
+  margin-top: 10px;
+}
 .handbid-form input:hover,
 .handbid-form input:focus {
   opacity: 1;
@@ -117,6 +120,7 @@ body {
   font-weight: 400;
   border: 1px solid #4cb0ce;
   color: #4cb0ce;
+  margin-top: 10px;
 }
 .handbid-form button:hover {
   background-color: #4cb0ce;
@@ -126,7 +130,7 @@ body {
   background: url('../images/login-with-facebook.png');
   width: 154px;
   height: 22px;
-  margin-top: 10px;
+  margin-top: 16px;
   display: block;
   float: right;
   background-repeat: no-repeat;
@@ -162,6 +166,7 @@ body {
   left: 0;
   right: 0;
   opacity: 1;
+  color: #000;
   -moz-animation: hideElement 1s ease-in-out 5s forwards;
   -webkit-animation: hideElement 1s ease-in-out 5s forwards;
   -o-animation: hideElement 1s ease-in-out 5s forwards;

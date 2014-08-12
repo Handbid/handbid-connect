@@ -12,8 +12,8 @@ define(['altair/facades/declare',
 
         hb:         null,
         auctionKey: 'handbid-demo-auction',
-        appId:     '289898497844744',
-        appSecret: 'f8e41e8d38c30acf3ea059fe41dbcb20',
+        appId:     '715939665138418',
+        appSecret: 'b5906dfe320fa01c01f0cc3258304aac',
 
         /**
          * @param options
