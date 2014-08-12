@@ -40,8 +40,6 @@ define(['altair/facades/declare',
 
                 this.assert(type, 'you must specify a valid type for your property. you passed "' + prop.type + '".');
 
-
-
                 //fallback goes in first (last in, first out)
                 _candidates = _candidates.concat([
                     pathUtil.join(fallbackPath, 'property'),

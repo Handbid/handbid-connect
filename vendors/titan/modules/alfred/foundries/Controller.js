@@ -36,7 +36,7 @@ define(['altair/facades/declare',
         },
 
         hasNamespace: function (named) {
-            return _.has(this._namespaces ,named);
+            return _.has(this._namespaces, named);
         },
 
         controllersInNamespace: function (named) {
@@ -52,12 +52,12 @@ define(['altair/facades/declare',
                 dfd;
 
             //track all the namespaces (1 per site)
-            if(!this._namespaces[namespace]) {
+            if (!this._namespaces[namespace]) {
                 this._namespaces[namespace] = [];
             }
 
 
-            if(_.has(this._controllers, controllerName)) {
+            if (_.has(this._controllers, controllerName)) {
 
                 dfd = this.when(this._controllers[controllerName]);
 
@@ -71,14 +71,13 @@ define(['altair/facades/declare',
                         dir:            path
                     });
 
-                    return config.defaultFoundry(Class, options, config).then(this.hitch(function (controller) {
+                    var controller = config.defaultFoundry(Class, options, config);
 
-                        this._controllers[controllerName] = controller;
-                        this._namespaces[namespace].push(controller);
+                    this._controllers[controllerName] = controller;
+                    this._namespaces[namespace].push(controller);
 
-                        return controller;
+                    return controller;
 
-                    }));
 
                 })});
 

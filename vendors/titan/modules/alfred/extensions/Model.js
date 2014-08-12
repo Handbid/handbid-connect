@@ -30,15 +30,15 @@ define(['altair/facades/declare',
                             }, config || {});
 
                         //if it's a nexus name, pass it off
-                        if(named.search(':') > 0) {
+                        if (named.search(':') > 0) {
                             return this.nexus(named, options, config);
                         }
 
-                        if(this._models[named]) {
+                        if (this._models[named]) {
                             return this._models[named];
                         }
 
-                        this._models[named] = this.forge(_p, options, _c);
+                        this._models[named] = this.forgeSync(_p, options, _c);
 
                         return this._models[named];
 

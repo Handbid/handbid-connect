@@ -1,11 +1,12 @@
 define(['altair/facades/declare',
     'altair/plugins/node!fs',
+    'altair/plugins/node!path',
     'altair/plugins/node!mkdirp',
     'lodash',
     'altair/Lifecycle',
     'altair/facades/glob',
     'altair/facades/mixin'
-], function (declare, fs, mkdirp, _, Lifecycle, glob, mixin) {
+], function (declare, fs, pathUtil, mkdirp, _, Lifecycle, glob, mixin) {
 
     return declare([Lifecycle], {
 
@@ -225,10 +226,8 @@ define(['altair/facades/declare',
          */
         attachMediaForPropertyTypes: function (media) {
 
-
             var apollo = this.nexus('cartridges/Apollo'),
                 types = apollo.propertyTypes();
-
 
             _.each(types, function (type) {
 
@@ -334,6 +333,8 @@ define(['altair/facades/declare',
          * @param from a path to file.
          */
         importMedia: function (from) {
+
+            this.log('importing media from %s', from);
 
             var to = this._dir,
                 qParts = from.split('?'), //incase we have a query string

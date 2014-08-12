@@ -93,7 +93,7 @@ define(['altair/facades/declare',
                 formId = r.get('altair-form-id'),
                 values = mixin(r.query(), r.post());
 
-           if(formId) {
+           if (formId) {
 
                 return this.form({
                     id:     formId,
@@ -116,7 +116,13 @@ define(['altair/facades/declare',
 
                     return this.emit('did-submit-form', data);
 
-                }));
+                })).then(function (_e) {
+
+                    if (!_e.active) {
+                        e.preventDefault();
+                    }
+
+                });
 
             }
 
