@@ -25,6 +25,7 @@ body {
     background: @darkBlue;
     font-weight: lighter;
     background: url('../images/bg.jpg') no-repeat center center scroll;
+//    background: url('https://app.useoctobox.com/img/landing/bg.jpg') no-repeat center center scroll;
 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -70,6 +71,11 @@ body {
         color: @placeHolder;
     }
 
+    input:-webkit-autofill,
+    input:focus:-webkit-autofill{
+        -webkit-box-shadow:0 0 0 50px @darkBlue inset;
+        -webkit-text-fill-color: #fff;
+    }
 
     input:focus::-webkit-input-placeholder,
     input:hover::-webkit-input-placeholder {

@@ -2,7 +2,7 @@
 
     <%if(options.label) {%>
     <label class="property-label"><%= options.label %></label>
-    <%}%>js/s
+    <%}%>
 
     <select <%- attributes %> name="<%= name %>" class="form-control">
         <% Object.keys(options.choices).forEach(function (id) { %>

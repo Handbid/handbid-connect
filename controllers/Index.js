@@ -188,7 +188,8 @@ define(['altair/facades/declare',
                         "email":     {
                             type:    "string",
                             attribs: {
-                                placeholder: "Email"
+                                placeholder: "Email",
+                                autocomplete: "off"
                             },
                             options: {}
                         },
