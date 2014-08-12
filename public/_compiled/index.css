@@ -12,7 +12,7 @@ body {
   color: #fff;
   background: #1672b3;
   font-weight: lighter;
-  background: url('https://app.useoctobox.com/img/landing/bg.jpg') no-repeat center center scroll;
+  background: url('../images/bg.jpg') no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -50,7 +50,7 @@ body {
 }
 .handbid-form input:-webkit-autofill,
 .handbid-form input:focus:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 50px #1672b3 inset;
+  -webkit-box-shadow: 0 0 0 50px #4cb0ce inset;
   -webkit-text-fill-color: #fff;
 }
 .handbid-form input:focus::-webkit-input-placeholder,
