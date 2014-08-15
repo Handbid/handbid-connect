@@ -80,6 +80,16 @@ define(['altair/facades/declare',
                 this.hb.on('did-connect-to-server', function (e) {
                     this.log('connected to firebird');
                 }.bind(this));
+
+                this.hb.on('disconnect', function () {
+
+                    if(!this.hb.isConnected()) {
+                        this.log('trying to connect again in 5 seconds');
+                        setTimeout(this.hitch('connectToHandbid', options), 5000);
+                    }
+
+                }.bind(this));
+
             }
 
             this.log('connecting to firebird @ ' + options.app.firebird);
