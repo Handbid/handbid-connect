@@ -94,6 +94,7 @@ define(['altair/facades/declare',
 
             this.log('connecting to firebird @ ' + options.app.firebird);
             this.hb.connect({ url: options.app.firebird, 'force new connection': true });
+
         },
 
 

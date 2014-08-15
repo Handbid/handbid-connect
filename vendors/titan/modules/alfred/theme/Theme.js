@@ -33,7 +33,7 @@ define(['altair/facades/declare',
 
         constructor: function (basePath, layout, renderer, options) {
 
-            this.context       = (options && options.layoutContext) ? options.layoutContext : {};
+            this.context        = _.cloneDeep((options && options.layoutContext) ? options.layoutContext : {});
             this._basePath      = basePath || '';
             this._layout        = layout || 'views/layout';
             this._headLink      = (options && options.headLink) || new HeadLink(basePath, renderer);
