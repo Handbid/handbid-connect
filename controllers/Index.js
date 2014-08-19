@@ -214,6 +214,16 @@ define(['altair/facades/declare',
                             },
                             options: {}
                         },
+                        "password2":  {
+                            type:    "string",
+                            attribs: {
+                                placeholder: "Confirm Password"
+                            },
+                            form:    {
+                                template: "handbid:*/views/partials/forms/properties/password.ejs"
+                            },
+                            options: {}
+                        },
                         "cellPhone": {
                             type:    "string",
                             attribs: {
