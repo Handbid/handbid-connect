@@ -1,6 +1,6 @@
 {
     "name":               "liquidfire:Forms",
-    "version":            "0.0.10",
+    "version":            "0.0.12",
     "description":        "Supports rendering of forms from schemas as well as submission and validation.",
     "altairDependencies": {
         "liquidfire:Onyx": ">=0.1.x",

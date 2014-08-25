@@ -3,8 +3,10 @@ define(['altair/facades/declare',
     'altair/facades/mixin',
     'altair/plugins/node!express',
     'altair/plugins/node!http',
+    'altair/plugins/node!https',
     'altair/plugins/node!body-parser',
     'altair/plugins/node!multiparty',
+    'altair/plugins/node!fs',
     'altair/facades/when',
     '../theme/Theme',
     '../theme/View',
@@ -12,13 +14,15 @@ define(['altair/facades/declare',
     '../http/Response',
     'lodash',
     './_Base'
-], function (declare, hitch, mixin, express, http, bodyParser, multiparty, when, Theme, View, Request, Response, _, _Base) {
+], function (declare, hitch, mixin, express, http, https, bodyParser, multiparty, fs, when, Theme, View, Request, Response, _, _Base) {
 
     return declare([_Base], {
 
         _app:      null,
         _client:   null,
+        _sslClient:   null,
         appConfig: null,
+        ssl:       null, //the ssl options to pass to https.createServer
         Theme:     Theme,
         View:      View,
         Request:   Request,
@@ -46,6 +50,7 @@ define(['altair/facades/declare',
 
             //configure express
             this.configureApp(_options);
+            this.configureSsl(_options);
 
             return this.inherited(arguments);
 
@@ -58,6 +63,47 @@ define(['altair/facades/declare',
          */
         app: function () {
             return this._app;
+        },
+
+        /**
+         * Setus up any SSL related setting required for the https library. If no sslPort is supplied, it is ignored.
+         *
+         * @param app
+         */
+        configureSsl: function (app) {
+
+            if (app.sslPort) {
+
+                this.assert(app.privateKeyPath, 'in order to use SSL, you need to supply a privateKeyPath');
+                this.assert(app.certificatePath, 'in order to use SSL, you need to supply a certificatePath');
+
+                var read = fs.readFileSync,
+                    altair = this.nexus('Altair');
+
+                this.ssl = {
+                    key: read(altair.resolvePath(app.privateKeyPath)),
+                    cert: read(altair.resolvePath(app.certificatePath))
+                };
+
+                //is there a ca?
+                if (app.ca) {
+
+                    this.ssl.ca = [];
+
+                    this.assertArray(app.ca, 'Ca must be an array of paths');
+
+                    _.each(app.ca, function (path) {
+
+                        this.ssl.ca.push(altair.resolvePath(path));
+
+                    }, this);
+
+                } else {
+                    this.ssl.ca = null;
+                }
+
+            }
+
         },
 
         /**
@@ -359,6 +405,19 @@ define(['altair/facades/declare',
 
                 this._client.listen(this.get('port'));
 
+                if (this.ssl) {
+
+                    this._sslClient = https.createServer(this.ssl, this._app);
+                    this._sslClient.on('error', hitch(this, function (err) {
+                        this.onError(err);
+                        this.deferred.reject(err);
+                    }));
+
+                    this._sslClient.listen(this.get('sslPort'));
+
+                }
+
+
             } catch (e) {
                 this.log(e);
                 this.deferred.reject(e);
@@ -377,6 +436,15 @@ define(['altair/facades/declare',
         },
 
         /**
+         * The htts server I am using
+         *
+         * @returns {null}
+         */
+        https: function () {
+            return this._sslClient;
+        },
+
+        /**
          * Close the server.
          *
          * @returns {*}
@@ -384,7 +452,14 @@ define(['altair/facades/declare',
         teardown: function () {
 
             this.log('tearing down server');
-            return this.promise(this._client, 'close');
+
+            var all = [this.promise(this._client, 'close')];
+
+            if (this._sslClient) {
+                all.push(this.promise(this._sslClient, 'close'));
+            }
+
+            return this.all(all);
 
         }
 

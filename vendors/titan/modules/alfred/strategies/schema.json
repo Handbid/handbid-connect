@@ -1,18 +1,44 @@
 {
     "description": "This schema will apply to all adapters. Each adapter may mixin its own.",
     "properties":  {
-        "dir":  {
-            "type":       "path",
-            "options":    {
+        "dir":             {
+            "type":    "path",
+            "options": {
                 "label":       "Path",
                 "description": "Where is the root of your site?"
             }
         },
-        "port": {
+        "port":            {
             "type":    "integer",
             "options": {
                 "label":   "Port",
                 "default": 8080
+            }
+        },
+        "sslPort":         {
+            "type":    "integer",
+            "options": {
+                "label":       "SSL Port",
+                "description": "If no port set, SSL is ignored."
+            }
+        },
+        "privateKeyPath":  {
+            "type":    "path",
+            "options": {
+                "label": "Private key path (for SSL)"
+            }
+        },
+        "certificatePath": {
+            "type":    "path",
+            "options": {
+                "label": "Certificate path (SSL)"
+            }
+        },
+        "ca":              {
+            "type":    "path",
+            "options": {
+                "label": "Certificate authority",
+                "many":  true
             }
         }
     }

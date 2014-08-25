@@ -119,6 +119,7 @@ define(['altair/facades/declare',
                     this.redirectToSource(req, res, req.user);
                 }.bind(this));
 
+
         },
 
         /**
