@@ -2,12 +2,15 @@
     "site": {
         "strategy": "express3",
         "options":  {
-            "port":     8082,
-            "vendor":   "handbid",
-            "domain":   "connect.handbid.com",
-            "firebird": "//firebird.handbid.com:6789",
-            "secure":   true,
-            "media":    {
+            "port":            8082,
+            "sslPort":         4433,
+            "privateKeyPath":  "../ssl/hand.bid.key",
+            "certificatePath": "../ssl/hand.bid.crt",
+            "ca":              ["../ssl/rapidssl_ca_1.pem", "../ssl/rapidssl_ca_2.pem"],
+            "vendor":          "handbid",
+            "domain":          "connect.hand.bid",
+            "firebird":        "//firebird.handbid.com:6789",
+            "media":           {
                 "css":  [
                     "/public/css/animate.css",
                     "/public/css/bootstrap.min.css",
@@ -21,7 +24,7 @@
                     "/public/js/bootstrap.min.js"
                 ]
             },
-            "routes":   {
+            "routes":          {
                 "/": {
                     "action":        "controllers/Index::index",
                     "layoutContext": {
@@ -31,7 +34,7 @@
                 },
 
                 "/fail": {
-                    "action":        "controllers/Index::fail"
+                    "action": "controllers/Index::fail"
                 }
             }
         }

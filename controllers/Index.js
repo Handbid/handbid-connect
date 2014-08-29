@@ -119,6 +119,7 @@ define(['altair/facades/declare',
                     this.redirectToSource(req, res, req.user);
                 }.bind(this));
 
+
         },
 
         /**
@@ -208,6 +209,16 @@ define(['altair/facades/declare',
                             type:    "string",
                             attribs: {
                                 placeholder: "Password"
+                            },
+                            form:    {
+                                template: "handbid:*/views/partials/forms/properties/password.ejs"
+                            },
+                            options: {}
+                        },
+                        "password2":  {
+                            type:    "string",
+                            attribs: {
+                                placeholder: "Confirm Password"
                             },
                             form:    {
                                 template: "handbid:*/views/partials/forms/properties/password.ejs"

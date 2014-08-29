@@ -3,7 +3,7 @@
         "options": {
             "port": 8080,
             "domain": "localhost:8080",
-            "secure": false,
+            "sslPort": null,
             "firebird": "//localhost:6789"
         }
     }

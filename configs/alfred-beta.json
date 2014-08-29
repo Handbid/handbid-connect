@@ -2,6 +2,7 @@
     "site": {
         "options": {
             "port": 8082,
+            "sslPort": null,
             "firebird": "//beta.firebird.handbid.com:6789"
         }
     }

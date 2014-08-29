@@ -57,7 +57,7 @@
         },
 
         "maxCols": {
-            "type":    "number",
+            "type":    "integer",
             "options": {
                 "label":       "Maximum columns",
                 "description": "Css libraries (such as twitter bootstrap) have a grid system. You can specify the most amount of columns each row can have here. This will add a class to each element wrapper using the colClass template.",

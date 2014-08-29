@@ -176,6 +176,21 @@ define(['altair/facades/declare',
 
             return this.parent.forge('lib/Form', options);
 
+        },
+
+        /**
+         * Strip out the values we are not rendering.
+         *
+         * @returns {*}
+         */
+        getValues: function () {
+
+            var values = this.inherited(arguments);
+
+            values = _.pick(values, _.keys(this.renderableProperties()));
+
+            return values;
+
         }
 
 
