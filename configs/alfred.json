@@ -9,7 +9,7 @@
             "ca":              ["../ssl/rapidssl_ca_1.pem", "../ssl/rapidssl_ca_2.pem"],
             "vendor":          "handbid",
             "domain":          "connect.hand.bid",
-            "firebird":        "//firebird.handbid.com:6789",
+            "firebird":        "https://firebird.hand.bid:6789",
             "media":           {
                 "css":  [
                     "/public/css/animate.css",
