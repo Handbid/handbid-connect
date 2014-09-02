@@ -53,7 +53,14 @@ define(['altair/facades/declare',
                     facebookId: profile.id
                 }, function(err, user) {
 
-                    done(err, user);
+                    if (err) {
+
+                        done(null, false, { message: err.message });
+
+                    } else {
+
+                        done(null, user);
+                    }
 
                 });
 
