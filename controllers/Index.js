@@ -52,7 +52,9 @@ define(['altair/facades/declare',
                 this.hb.signup({
                     facebookId: profile.id
                 }, function(err, user) {
-                    done(null, user);
+
+                    done(err, user);
+
                 });
 
             }.bind(this)));
@@ -181,6 +183,7 @@ define(['altair/facades/declare',
 
             var request = e.get('request'),
                 values = request.post();
+
             return this.widget('liquidFire:Forms/widgets/Form.signup', {
                 formValues: values,
                 formSchema: {
@@ -350,7 +353,7 @@ define(['altair/facades/declare',
             var cookie  = new Cookies(request, response),
                 url     = cookie.get("pass");
 
-            if((url.indexOf("?") > -1)) {
+            if (url.indexOf("?") > -1) {
                 url += "&handbid-auth=" + user.auth;
             }
             else
