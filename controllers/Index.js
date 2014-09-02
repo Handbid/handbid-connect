@@ -125,7 +125,9 @@ define(['altair/facades/declare',
                 });
 
             app.get('/auth/facebook/callback',
-                passport.authenticate('facebook', { failureRedirect: '/fail' }),
+                passport.authenticate('facebook', function (err, user, info) {
+                    console.log('test');
+                }),
                 function(req, res) {
                     this.redirectToSource(req, res, req.user);
                 }.bind(this));
