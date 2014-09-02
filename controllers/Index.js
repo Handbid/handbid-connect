@@ -11,9 +11,6 @@ define(['altair/facades/declare',
     return declare([Lifecycle, Emitter], {
 
         hb:         null,
-        auctionKey: 'handbid-demo-auction',
-        appId:     '715939665138418',
-        appSecret: 'b5906dfe320fa01c01f0cc3258304aac',
 
         /**
          * @param options
@@ -43,18 +40,17 @@ define(['altair/facades/declare',
 
             redirect        = redirect + options.app.domain + ':' + port + '/auth/facebook/callback';
 
+            //setup passport
             passport.use(new facebook.Strategy({
-                clientID:       this.appId,
-                clientSecret:   this.appSecret,
+                clientID:       options.app.facebook.appId,
+                clientSecret:   options.app.facebook.appSecret,
                 callbackURL:     redirect
             }, function(accessToken, refreshToken, profile, done) {
 
                 this.hb.signup({
                     facebookId: profile.id
                 }, function(err, user) {
-
                     done(err, user);
-
                 });
 
             }.bind(this)));
@@ -129,16 +125,27 @@ define(['altair/facades/declare',
             //an event has lots of useful data pertaining to a particular request.
             var response    = e.get('response'),
                 request     = e.get('request'),
+                pass,
+                fail,
                 theme       = e.get('theme'),
                 cookie;
 
-            if(!request.get('pass') || !request.get('fail')) {
+            cookie  = new Cookies( request.raw(), response.raw() );
+            pass    = cookie.get('pass') || request.get('pass');
+            fail    = cookie.get('fail') || request.get('fail');
+
+
+            if(!pass || !fail) {
                 return e.get('view').setPath(this.resolvePath('views/index/no-back.ejs')).render();
             }
 
-            cookie = new Cookies( request.raw(), response.raw() );
-            cookie.set("pass", request.get('pass'));
-            cookie.set("fail", request.get('fail'));
+            cookie.set("pass", pass);
+            cookie.set("fail", fail);
+
+            //was an error passed through the query string?
+            if (request.get('error')) {
+                e.get('theme').set('errors', [request.get('error')]);
+            }
 
             return this.all({
                 signupForm: this.createSignupForm(e),
@@ -381,13 +388,12 @@ define(['altair/facades/declare',
             passport.authenticate('facebook', function (err, user, info) {
 
                 if(err) {
-                    theme.set('errors', [err.message]);
-                    dfd.resolve(e.get('view').setPath(this.resolvePath('views/index/index.ejs')).render());
-
+                    response.redirect('/?error=' + err.message);
                 } else {
-                    this.redirectToSource(request, response, user);
-                    dfd.resolve();
+                    this.redirectToSource(request.raw(), response.raw(), user);
                 }
+
+                dfd.resolve();
 
             }.bind(this))(request.raw(), response.raw());
 
