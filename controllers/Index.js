@@ -38,8 +38,10 @@ define(['altair/facades/declare',
             this.on('titan:Alfred::will-configure-express-routes').then(this.hitch('onWillConfigureExpressRoutes'));
 
             //where to redirect user after they remotely auth
-            var redirect    = options.app.sslPort ? 'https://' : 'http://';
-            redirect        = redirect + options.app.domain + '/auth/facebook/callback';
+            var redirect    = options.app.sslPort ? 'https://' : 'http://',
+                port        = options.app.sslPort || options.app.port;
+
+            redirect        = redirect + options.app.domain + ':' + port + '/auth/facebook/callback';
 
             passport.use(new facebook.Strategy({
                 clientID:       this.appId,
