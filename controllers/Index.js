@@ -53,14 +53,7 @@ define(['altair/facades/declare',
                     facebookId: profile.id
                 }, function(err, user) {
 
-                    if (err) {
-
-                        done(null, false, { message: err.message });
-
-                    } else {
-
-                        done(null, user);
-                    }
+                    done(err, user);
 
                 });
 
@@ -123,14 +116,6 @@ define(['altair/facades/declare',
                     // The request will be redirected to Facebook for authentication, so this
                     // function will not be called.
                 });
-
-            app.get('/auth/facebook/callback',
-                passport.authenticate('facebook', function (err, user, info) {
-                    console.log('test');
-                }),
-                function(req, res) {
-                    this.redirectToSource(req, res, req.user);
-                }.bind(this));
 
 
         },
@@ -383,6 +368,30 @@ define(['altair/facades/declare',
 
             var cookie = new Cookies(e.get('request').raw(), e.get('response').raw());
             e.get('response').redirect(cookie.get('fail'));
+
+        },
+
+        facebookCallback: function (e) {
+
+            var request     = e.get('request'),
+                response    = e.get('response'),
+                theme       = e.get('theme'),
+                dfd         = new this.Deferred();
+
+            passport.authenticate('facebook', function (err, user, info) {
+
+                if(err) {
+                    theme.set('errors', [err.message]);
+                    dfd.resolve(e.get('view').setPath(this.resolvePath('views/index/index.ejs')).render());
+
+                } else {
+                    this.redirectToSource(request, response, user);
+                    dfd.resolve();
+                }
+
+            }.bind(this));
+
+            return dfd;
 
         }
     });

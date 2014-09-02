@@ -35,7 +35,11 @@
 
                 "/fail": {
                     "action": "controllers/Index::fail"
-                }
+                },
+
+                               "/auth/facebook/callback": {
+                                                          "action": "controllers/Index::facebookCallback"
+                               }
             }
         }
     }
