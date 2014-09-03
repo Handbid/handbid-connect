@@ -352,14 +352,27 @@ define(['altair/facades/declare',
         redirectToSource: function(request, response, user) {
 
             var cookie  = new Cookies(request, response),
-                url     = cookie.get("pass");
+                url     = cookie.get("pass"),
+                parts,
+                hash;
 
-            if (url.indexOf("?") > -1) {
+            //make sure we go ahead of any #
+            parts = url.split('#');
+            url = parts[0];
+            hash = parts[1] || false;
+
+            if(!url) {
+                url = '/?error=You must have cookies enabled to connect with Handbid.';
+            } else if (url.indexOf("?") > -1) {
                 url += "&handbid-auth=" + user.auth;
             }
             else
             {
                 url += "?handbid-auth=" + user.auth;
+            }
+
+            if (hash) {
+               url += '#' + hash;
             }
 
             response.redirect(url);
