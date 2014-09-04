@@ -11,8 +11,8 @@
             "domain":          "connect.hand.bid",
             "firebird":        "https://firebird.hand.bid:6789",
             "facebook":        {
-                "appId":     "715939665138418",
-                "appSecret": "b5906dfe320fa01c01f0cc3258304aac"
+                "appId":     "276355612383707",
+                "appSecret": "02a2c30cac2b34e1dd9cfeab205f34f3"
             },
             "media":           {
                 "css":  [
