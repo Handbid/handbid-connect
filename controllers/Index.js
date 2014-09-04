@@ -357,9 +357,11 @@ define(['altair/facades/declare',
                 hash;
 
             //make sure we go ahead of any #
-            parts = url.split('#');
-            url = parts[0];
-            hash = parts[1] || false;
+            if(url) {
+                parts = url.split('#');
+                url = parts[0];
+                hash = parts[1] || false;
+            }
 
             if(!url) {
                 url = '/?error=You must have cookies enabled to connect with Handbid.';
