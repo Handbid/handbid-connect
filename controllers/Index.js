@@ -131,8 +131,8 @@ define(['altair/facades/declare',
                 cookie;
 
             cookie  = new Cookies( request.raw(), response.raw() );
-            pass    = cookie.get('pass') || request.get('pass');
-            fail    = cookie.get('fail') || request.get('fail');
+            pass    = request.get('pass') || cookie.get('pass');
+            fail    = request.get('fail') || cookie.get('fail');
 
 
             if(!pass || !fail) {
