@@ -4,7 +4,7 @@
             "port": 8080,
             "domain": "taysmacbookpro.local",
             "sslPort": null,
-            "firebird": "http://localhost:6789",
+            "firebird": "https://beta-firebird.hand.bid:6789",
             "facebook":        {
                 "appId":     "294449240572252",
                 "appSecret": "87c2be896518cc49f4ff6340f18096ed"
