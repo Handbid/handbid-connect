@@ -340,7 +340,36 @@ define(['altair/facades/declare',
                 theme.set('errors', ['Login Failed']);
             }
             else {
-                var back = request.get('back');
+
+                var back = request.get('back'),
+                    auctionKey = request.get('auction');
+
+                //we are adding this user to the auction
+                if (auctionKey) {
+
+                    this.hb.connectToAuction(auctionKey, function (err, auction) {
+
+                        if(auction) {
+
+                            auction.join(user._id, function (err) {
+
+                                if(err) {
+                                    this.log('error joining auction');
+                                    this.log(err);
+                                }
+
+                            }.bind(this));
+                        } else {
+
+                            this.log('error loading auction by key ' + auctionKey);
+                            this.log(err);
+                        }
+
+                    }.bind(this));
+
+
+                }
+
                 e.preventDefault();
                 this.redirectToSource(request.raw(), response.raw(), user);
 
