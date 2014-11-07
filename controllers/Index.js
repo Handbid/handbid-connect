@@ -266,7 +266,7 @@ define(['altair/facades/declare',
                         "email":    {
                             type:    "string",
                             attribs: {
-                                placeholder: 'Pin'
+                                placeholder: 'PIN'
                             },
                             options: {
                             }
@@ -275,9 +275,6 @@ define(['altair/facades/declare',
                             type:    "string",
                             attribs: {
                                 placeholder: "Phone Number"
-                            },
-                            form:    {
-                                template: "handbid:*/views/partials/forms/properties/password.ejs"
                             },
                             options: {}
                         }
