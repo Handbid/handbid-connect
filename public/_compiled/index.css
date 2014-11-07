@@ -1,4 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400);
+body .signup-form,
+body .fb-connect {
+  display: none;
+}
 html,
 body {
   min-height: 100%;
@@ -35,18 +39,18 @@ body {
   -webkit-border-radius: 5px;
 }
 .handbid-form ::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #000000;
 }
 .handbid-form :-moz-placeholder {
   /* Firefox 18- */
-  color: rgba(255, 255, 255, 0.5);
+  color: #000000;
 }
 .handbid-form ::-moz-placeholder {
   /* Firefox 19+ */
-  color: rgba(255, 255, 255, 0.5);
+  color: #000000;
 }
 .handbid-form :-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #000000;
 }
 .handbid-form input:-webkit-autofill,
 .handbid-form input:focus:-webkit-autofill {
@@ -55,21 +59,21 @@ body {
 }
 .handbid-form input:focus::-webkit-input-placeholder,
 .handbid-form input:hover::-webkit-input-placeholder {
-  color: #ffffff;
+  color: #000000;
 }
 .handbid-form input:focus:-moz-placeholder,
 .handbid-form input:hover:-moz-placeholder {
   /* Firefox 18- */
-  color: #ffffff;
+  color: #000000;
 }
 .handbid-form input:focus::-moz-placeholder,
 .handbid-form input:hover::-moz-placeholder {
   /* Firefox 19+ */
-  color: #ffffff;
+  color: #000000;
 }
 .handbid-form input:focus:-ms-input-placeholder,
 .handbid-form input:hover:-ms-input-placeholder {
-  color: #ffffff;
+  color: #000000;
 }
 .handbid-form h2 {
   text-align: center;
@@ -90,8 +94,7 @@ body {
   padding: 25px;
 }
 .handbid-form input {
-  background-color: transparent;
-  color: #fff;
+  color: #000;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   -webkit-border-radius: 0px;
@@ -115,7 +118,7 @@ body {
 }
 .handbid-form button,
 .handbid-form button:hover {
-  background: transparent;
+  background: #9fb94a;
   padding-left: 50px;
   padding-right: 50px;
   text-transform: uppercase;
@@ -123,13 +126,9 @@ body {
   background-image: none;
   box-shadow: none;
   font-weight: 400;
-  border: 1px solid #4cb0ce;
-  color: #4cb0ce;
-  margin-top: 10px;
-}
-.handbid-form button:hover {
-  background-color: #4cb0ce;
+  border: 1px solid #9fb94a;
   color: #fff;
+  margin-top: 10px;
 }
 .fb-connect {
   background: url('../images/login-with-facebook.png');

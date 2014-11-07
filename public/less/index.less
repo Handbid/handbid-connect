@@ -1,3 +1,11 @@
+// Remove after the fire is out
+body {
+    .signup-form,
+    .fb-connect {
+        display: none;
+    }
+}
+
 // Handbid Setup
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400);
 
@@ -51,8 +59,8 @@ body {
     border-radius: 5px;
     -webkit-border-radius: 5px;
 
-    @placeHolder: rgba(255,255,255,0.5);
-    @placeHolderFocus: rgba(255,255,255,1);
+    @placeHolder: rgba(0,0,0,1);
+    @placeHolderFocus: rgba(0,0,0,1);
 
     ::-webkit-input-placeholder {
         color: @placeHolder;
@@ -118,8 +126,7 @@ body {
         padding: 25px;
     }
     input {
-        background-color: transparent;
-        color: #fff;
+        color: #000;
         border: none;
         border-bottom: 1px solid rgba(255,255,255,0.5);
         -webkit-border-radius: 0px;
@@ -144,7 +151,7 @@ body {
     }
     button,
     button:hover {
-        background: transparent;
+        background: @green;
         padding-left: 50px;
         padding-right: 50px;
         text-transform: uppercase;
@@ -152,14 +159,9 @@ body {
         background-image:none;
         box-shadow: none;
         font-weight: 400;
-        border:1px solid @lightBlue;
-        color: @lightBlue;
-        margin-top: 10px;
-    }
-
-    button:hover {
-        background-color:@lightBlue;
+        border:1px solid @green;
         color: #fff;
+        margin-top: 10px;
     }
 }
 
