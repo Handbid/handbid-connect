@@ -1,8 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400);
-body .signup-form,
-body .fb-connect {
-  display: none;
-}
 html,
 body {
   min-height: 100%;
@@ -209,4 +205,15 @@ body.site-down {
   top: 0px;
   bottom: 0px;
   background: #ffffff url('../images/error.png') center bottom no-repeat;
+}
+@media (max-width: 600px) {
+  .btn {
+    display: block;
+    clear: both;
+  }
+  .fb-connect {
+    clear: both;
+    display: block;
+    float: left;
+  }
 }
