@@ -141,8 +141,8 @@ body {
         box-shadow: none;
         -moz-box-shadow: none;
     }
-    button,
-    button:hover {
+    .btn,
+    .btn:hover {
         background: @green;
         padding-left: 50px;
         padding-right: 50px;
@@ -155,17 +155,27 @@ body {
         color: #fff;
         margin-top: 10px;
     }
+
+    .btn-connect,
+    .btn-connect:hover {
+        @fb: #3b5998;
+
+        border-color: @fb;
+        background: @fb url('../images/fb-logo.svg') 10px center;
+        line-height: 2px;
+        background-size: 10px;
+        background-repeat: no-repeat;
+        padding: 15px 15px 15px 35px;
+        width: auto;
+
+    }
 }
 
 .fb-connect {
-    background: url('../images/login-with-facebook.png');
-    width: 154px;
     height: 22px;
     margin-top: 16px;
     display: block;
     float: right;
-    background-repeat: no-repeat;
-    background-position: center center;
 }
 
 .col-xs-12 {
@@ -245,14 +255,17 @@ body.site-down {
     background: white url('../images/error.png') center bottom no-repeat;
 }
 
-@media (max-width: 600px) {
-    .btn {
-        display: block;
-        clear: both;
-    }
+@media (max-width: 900px) {
     .fb-connect {
         clear: both;
         display: block;
         float: left;
+        margin-top: 15px;
+    }
+}
+@media (max-width: 600px) {
+    .btn {
+        display: block;
+        clear: both;
     }
 }
