@@ -6,7 +6,6 @@ body {
 body {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
   font-weight: 400;
   font-family: 'Lato', sans-serif;
   color: #fff;
@@ -112,8 +111,34 @@ body {
   box-shadow: none;
   -moz-box-shadow: none;
 }
-.handbid-form button,
-.handbid-form button:hover {
+.handbid-form .btn,
+.handbid-form .btn:hover {
+  background: #9fb94a;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-transform: uppercase;
+  border-radius: 0px;
+  background-image: none;
+  box-shadow: none;
+  font-weight: 400;
+  border: 1px solid #9fb94a;
+  color: #fff;
+  margin-top: 10px;
+}
+.handbid-form .btn-connect,
+.handbid-form .btn-connect:hover {
+  border-color: #3b5998;
+  background: #3b5998 url('../images/fb-logo.svg') 10px center;
+  line-height: 2px;
+  background-size: 10px;
+  background-repeat: no-repeat;
+  padding: 15px 15px 15px 35px;
+  width: auto;
+}
+.btn-manager,
+.btn-manager:hover {
+  float: right;
+  margin-right: 25px;
   background: #9fb94a;
   padding-left: 50px;
   padding-right: 50px;
@@ -127,14 +152,10 @@ body {
   margin-top: 10px;
 }
 .fb-connect {
-  background: url('../images/login-with-facebook.png');
-  width: 154px;
   height: 22px;
   margin-top: 16px;
   display: block;
   float: right;
-  background-repeat: no-repeat;
-  background-position: center center;
 }
 .col-xs-12 {
   margin-bottom: 25px;
@@ -204,16 +225,19 @@ body.site-down {
   right: 0px;
   top: 0px;
   bottom: 0px;
-  background: #ffffff url('../images/error.png') center bottom no-repeat;
+  background: white url('../images/error.png') center bottom no-repeat;
+}
+@media (max-width: 900px) {
+  .fb-connect {
+    clear: both;
+    display: block;
+    float: left;
+    margin-top: 15px;
+  }
 }
 @media (max-width: 600px) {
   .btn {
     display: block;
     clear: both;
-  }
-  .fb-connect {
-    clear: both;
-    display: block;
-    float: left;
   }
 }

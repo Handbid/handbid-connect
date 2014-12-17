@@ -3,13 +3,13 @@
 
 // Primary
 @lightBlue: rgba(76, 176, 206, 1);
-@darkBlue:  rgba(22, 114, 179, 1);
-@gray:      rgba(110, 130, 138, 1);
+@darkBlue: rgba(22, 114, 179, 1);
+@gray: rgba(110, 130, 138, 1);
 
 // highlight
 @orange: rgba(247, 142, 30, 1);
-@green:  rgba(159, 185, 74, 1);
-@pink:   rgba(23, 77, 112, 1);
+@green: rgba(159, 185, 74, 1);
+@pink: rgba(23, 77, 112, 1);
 
 html, body {
     min-height: 100%;
@@ -18,20 +18,19 @@ html, body {
 body {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
     font-weight: 400;
     font-family: 'Lato', sans-serif;
     color: #fff;
     background: @darkBlue;
     font-weight: lighter;
     background: url('../images/bg.jpg') no-repeat center center scroll;
-//    background: url('https://app.useoctobox.com/img/landing/bg.jpg') no-repeat center center scroll;
+    //    background: url('https://app.useoctobox.com/img/landing/bg.jpg') no-repeat center center scroll;
 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    text-shadow: 1px 1px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .logo {
@@ -51,19 +50,21 @@ body {
     border-radius: 5px;
     -webkit-border-radius: 5px;
 
-    @placeHolder: rgba(0,0,0,1);
-    @placeHolderFocus: rgba(0,0,0,1);
+    @placeHolder: rgba(0, 0, 0, 1);
+    @placeHolderFocus: rgba(0, 0, 0, 1);
 
     ::-webkit-input-placeholder {
         color: @placeHolder;
 
     }
 
-    :-moz-placeholder { /* Firefox 18- */
+    :-moz-placeholder {
+        /* Firefox 18- */
         color: @placeHolder;
     }
 
-    ::-moz-placeholder {  /* Firefox 19+ */
+    ::-moz-placeholder {
+        /* Firefox 19+ */
         color: @placeHolder;
     }
 
@@ -72,8 +73,8 @@ body {
     }
 
     input:-webkit-autofill,
-    input:focus:-webkit-autofill{
-        -webkit-box-shadow:0 0 0 50px @lightBlue inset;
+    input:focus:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 50px @lightBlue inset;
         -webkit-text-fill-color: #fff;
     }
 
@@ -84,12 +85,14 @@ body {
     }
 
     input:focus:-moz-placeholder, /* Firefox 18- */
-    input:hover:-moz-placeholder { /* Firefox 18- */
+    input:hover:-moz-placeholder {
+        /* Firefox 18- */
         color: @placeHolderFocus;
     }
 
-    input:focus::-moz-placeholder,  /* Firefox 19+ */
-    input:hover::-moz-placeholder {  /* Firefox 19+ */
+    input:focus::-moz-placeholder, /* Firefox 19+ */
+    input:hover::-moz-placeholder {
+        /* Firefox 19+ */
         color: @placeHolderFocus;
     }
 
@@ -97,7 +100,6 @@ body {
     input:hover:-ms-input-placeholder {
         color: @placeHolderFocus;
     }
-
 
     h2 {
         text-align: center;
@@ -120,7 +122,7 @@ body {
     input {
         color: #000;
         border: none;
-        border-bottom: 1px solid rgba(255,255,255,0.5);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
         -webkit-border-radius: 0px;
         border-radius: 0px;
         height: 40px;
@@ -147,11 +149,11 @@ body {
         padding-left: 50px;
         padding-right: 50px;
         text-transform: uppercase;
-        border-radius:0px;
-        background-image:none;
+        border-radius: 0px;
+        background-image: none;
         box-shadow: none;
         font-weight: 400;
-        border:1px solid @green;
+        border: 1px solid @green;
         color: #fff;
         margin-top: 10px;
     }
@@ -159,7 +161,6 @@ body {
     .btn-connect,
     .btn-connect:hover {
         @fb: #3b5998;
-
         border-color: @fb;
         background: @fb url('../images/fb-logo.svg') 10px center;
         line-height: 2px;
@@ -167,8 +168,24 @@ body {
         background-repeat: no-repeat;
         padding: 15px 15px 15px 35px;
         width: auto;
-
     }
+}
+
+.btn-manager,
+.btn-manager:hover {
+    float: right;
+    margin-right: 25px;
+    background: @green;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-transform: uppercase;
+    border-radius: 0px;
+    background-image: none;
+    box-shadow: none;
+    font-weight: 400;
+    border: 1px solid @green;
+    color: #fff;
+    margin-top: 10px;
 }
 
 .fb-connect {
@@ -198,7 +215,7 @@ body {
 .invalid-request {
     color: #fff;
     margin-top: 100px;
-    width:100%;
+    width: 100%;
     text-align: center;
     line-height: 1.5em;
 }
@@ -229,6 +246,7 @@ body {
         top: -50px;
     }
 }
+
 @-webkit-keyframes hideElement {
     from {
         opacity: 1;
@@ -251,7 +269,7 @@ body.site-down {
     left: 0px;
     right: 0px;
     top: 0px;
-    bottom:0px;
+    bottom: 0px;
     background: white url('../images/error.png') center bottom no-repeat;
 }
 
@@ -263,6 +281,7 @@ body.site-down {
         margin-top: 15px;
     }
 }
+
 @media (max-width: 600px) {
     .btn {
         display: block;

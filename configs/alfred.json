@@ -18,10 +18,8 @@
                 "css":  [
                     "/public/css/animate.css",
                     "/public/css/bootstrap.min.css",
-                    "/public/css/bootstrap-theme.min.css"
-                ],
-                "less": [
-                    "/public/less/index.less"
+                    "/public/css/bootstrap-theme.min.css",
+                    "/public/css/index.css"
                 ],
                 "js":   [
                     "/public/js/jquery-1.11.1.min.js",
