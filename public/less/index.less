@@ -18,7 +18,6 @@ html, body {
 body {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    font-weight: 400;
     font-family: 'Lato', sans-serif;
     color: #fff;
     background: @darkBlue;
@@ -36,14 +35,14 @@ body {
 .logo {
     background-image: url('../images/logo.svg');
     width: 200px;
-    height: 100px;
-    margin: 25px auto 0 auto;
+    height: 85px;
+    margin: 15px auto 0 auto;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .container-fluid {
-    padding: 25px;
+    padding: 0 25px;
 }
 
 .handbid-form {
@@ -130,9 +129,6 @@ body {
         padding: 0 15px 0;
         font-size: 14px;
     }
-    select {
-        margin-top: 10px;
-    }
 
     input:hover, input:focus {
         opacity: 1;
@@ -185,7 +181,10 @@ body {
     font-weight: 400;
     border: 1px solid @green;
     color: #fff;
-    margin-top: 10px;
+}
+
+.handbid-form .btn.btn-manager {
+    margin-top: 25px;
 }
 
 .fb-connect {
