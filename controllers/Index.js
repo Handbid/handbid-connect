@@ -274,7 +274,7 @@ define(['altair/facades/declare',
                         "password": {
                             type:    "string",
                             attribs: {
-                                placeholder: "Password / Phone Number"
+                                placeholder: "Password / Phone Number ( Digits Only )"
                             },
                             options: {}
                         }
