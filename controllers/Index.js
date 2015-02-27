@@ -292,7 +292,7 @@ define(['altair/facades/declare',
                 theme = e.get('theme');
 
             user.cellPhone = {
-                value: user.cellPhone,
+                value: user.cellPhone.trim(),
                 type:  user.phoneType
             };
 
@@ -313,7 +313,7 @@ define(['altair/facades/declare',
                 user = form.getValues(),
                 theme = e.get('theme');
 
-            this.hb.login(user.email, user.password, function (error, user) {
+            this.hb.login(user.email.trim(), user.password.trim(), function (error, user) {
 
                 this.onDidAuthenticate(error, e, user);
                 dfd.resolve();
