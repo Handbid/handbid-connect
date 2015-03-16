@@ -9,7 +9,7 @@
 // highlight
 @orange: rgba(247, 142, 30, 1);
 @green: rgba(159, 185, 74, 1);
-@pink: rgba(23, 77, 112, 1);
+@pink: #e94d70;
 
 html, body {
     min-height: 100%;
@@ -167,6 +167,28 @@ body {
     }
 }
 
+.handbid-form .btn {
+	&.btn-forgot-password,
+	&.btn-forgot-password:hover {
+		float: left;
+		margin-right: 25px;
+		background: @pink;
+		padding-left: 50px;
+		padding-right: 50px;
+		text-transform: uppercase;
+		border-radius: 0;
+		background-image: none;
+		box-shadow: none;
+		font-weight: 400;
+		border: 1px solid @pink;
+		color: #fff;
+	}
+}
+
+.handbid-form .btn.btn-forgot-password {
+	margin-top: 25px;
+}
+
 .btn-manager,
 .btn-manager:hover {
     float: right;
@@ -185,6 +207,21 @@ body {
 
 .handbid-form .btn.btn-manager {
     margin-top: 25px;
+}
+
+.handbid-form .property-label {
+	color: #fff;
+}
+
+.terms.link:hover {
+	cursor: pointer;
+}
+
+input[type="checkbox"] {
+	width: 50px;
+	display: inline-block;
+	height: 14px;
+	margin: 15px 0 0 15px;
 }
 
 .fb-connect {

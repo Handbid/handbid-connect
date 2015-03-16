@@ -247,6 +247,15 @@ define(['altair/facades/declare',
                                     "other":   "Other"
                                 }
                             }
+                        },
+                        "agreeToTerms": {
+                            "type":    "boolean",
+                            form:    {
+                                template: "handbid:*/views/partials/forms/properties/terms.ejs"
+                            },
+                            "options" : {
+                                "label" : "Agree to Terms & Services"
+                            }
                         }
                     }
                 },
