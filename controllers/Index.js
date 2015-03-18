@@ -194,14 +194,18 @@ define(['altair/facades/declare',
                             attribs: {
                                 placeholder: "First Name"
                             },
-                            options: {}
+                            options: {
+                                required: true
+                            }
                         },
                         "lastName":  {
                             type:    "string",
                             attribs: {
                                 placeholder: "Last Name"
                             },
-                            options: {}
+                            options: {
+                                required: true
+                            }
                         },
                         "email":     {
                             type:    "string",
@@ -209,7 +213,9 @@ define(['altair/facades/declare',
                                 placeholder: "Email",
                                 autocomplete: "off"
                             },
-                            options: {}
+                            options: {
+                                required: true
+                            }
                         },
                         "password":  {
                             type:    "string",
@@ -236,7 +242,9 @@ define(['altair/facades/declare',
                             attribs: {
                                 placeholder: "Cell Phone"
                             },
-                            options: {}
+                            options: {
+                                required: true
+                            }
                         },
                         "phoneType": {
                             "type":    "select",
@@ -278,6 +286,7 @@ define(['altair/facades/declare',
                                 placeholder: 'Email / PIN'
                             },
                             options: {
+                                required: true
                             }
                         },
                         "password": {
@@ -285,7 +294,9 @@ define(['altair/facades/declare',
                             attribs: {
                                 placeholder: "Password / Phone Number ( Digits Only )"
                             },
-                            options: {}
+                            options: {
+                                required: true
+                            }
                         }
                     }
                 },

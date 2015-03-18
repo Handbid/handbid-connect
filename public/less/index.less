@@ -165,6 +165,14 @@ body {
         padding: 15px 15px 15px 35px;
         width: auto;
     }
+
+	.login {
+		width: 241px;
+	}
+
+	.signup {
+		width: 206px;
+	}
 }
 
 .handbid-form .btn {
@@ -320,6 +328,38 @@ body.site-down {
     top: 0px;
     bottom: 0px;
     background: white url('../images/error.png') center bottom no-repeat;
+}
+
+@media (max-width: 1151px) {
+	.btn-forgot-password {
+		margin-right: 0;
+	}
+}
+
+@media (max-width: 1100px) {
+	.handbid-form .btn-connect:hover {
+		width: 100%;
+	}
+	.button-wrapper,
+	.modal-footer {
+		.btn {
+			width: 100%;
+			display: block;
+		}
+	}
+
+	.modal-footer {
+		.btn:last-of-type {
+			margin-bottom: 15px;
+		}
+	}
+
+	.btn-forgot-password {
+		margin-left: 0;
+	}
+	.btn.btn-manager {
+		margin-right: 0;
+	}
 }
 
 @media (max-width: 900px) {
