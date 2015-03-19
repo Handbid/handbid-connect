@@ -1,8 +1,21 @@
 {
-    "site": {
-        "options": {
-            "port": 8080,
-            "sslPort": null
-        }
+  "site": {
+    "options": {
+      "port": 8080,
+      "sslPort": null,
+      "media": {
+        "css": [
+          "/public/css/animate.css",
+          "/public/css/bootstrap.min.css",
+          "/public/css/bootstrap-theme.min.css",
+          "/public/css/index.css"
+        ],
+        "js": [
+          "/public/js/jquery-1.11.1.min.js",
+          "/public/js/bootstrap.min.js",
+          "/public/js/form-validation.js"
+        ]
+      }
     }
+  }
 }

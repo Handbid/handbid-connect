@@ -194,18 +194,14 @@ define(['altair/facades/declare',
                             attribs: {
                                 placeholder: "First Name"
                             },
-                            options: {
-                                required: true
-                            }
+                            options: {}
                         },
                         "lastName":  {
                             type:    "string",
                             attribs: {
                                 placeholder: "Last Name"
                             },
-                            options: {
-                                required: true
-                            }
+                            options: {}
                         },
                         "email":     {
                             type:    "string",
@@ -213,9 +209,7 @@ define(['altair/facades/declare',
                                 placeholder: "Email",
                                 autocomplete: "off"
                             },
-                            options: {
-                                required: true
-                            }
+                            options: {}
                         },
                         "password":  {
                             type:    "string",
@@ -242,9 +236,7 @@ define(['altair/facades/declare',
                             attribs: {
                                 placeholder: "Cell Phone"
                             },
-                            options: {
-                                required: true
-                            }
+                            options: {}
                         },
                         "phoneType": {
                             "type":    "select",
@@ -285,18 +277,14 @@ define(['altair/facades/declare',
                             attribs: {
                                 placeholder: 'Email / PIN'
                             },
-                            options: {
-                                required: true
-                            }
+                            options: {}
                         },
                         "password": {
                             type:    "string",
                             attribs: {
                                 placeholder: "Password / Phone Number ( Digits Only )"
                             },
-                            options: {
-                                required: true
-                            }
+                            options: {}
                         }
                     }
                 },
